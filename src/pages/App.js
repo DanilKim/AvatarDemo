@@ -8,19 +8,9 @@ import {
   Tab,
 } from "@mui/material";
 
-import {
-  Undo,
-  Redo,
-  PlayArrow,
-  Settings,
-  ExitToApp,
-} from "@mui/icons-material";
-
 import * as React from "react";
 import TabPanel from "../components/TabPanelView";
-import AvatarCreate from "../components/AvatarCreateView";
-import AvatarFacaAnimation from "../components/AvatarFaceAnimationView";
-import AvatarBodyAnimation from "../components/AvatarBodyAnimation";
+import AvatarCreate from "./ui_flame/GenerativeFaceView";
 
 import { useState } from "react";
 
@@ -28,13 +18,13 @@ function App() {
   const [value, setValue] = React.useState(0);
 
   //const [faceBlendShape, setFaceBlendShape] = React.useState([new Object()]);
-  const [bodyAnimation, setBodyAnimation] = React.useState([new Object()]);
+  //const [bodyAnimation, setBodyAnimation] = React.useState([new Object()]);
 
   const [faceBlendShape, setFaceBlendShape] = useState(0);
   const [eyeSize, setEyeSize] = useState(0);
   const [eyeShape, setEyeShape] = useState(0);
   const [skin, setSkin] = useState(0);
-  const [faceAnimData, setFaceAnimData] = useState();
+  //const [faceAnimData, setFaceAnimData] = useState();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -57,10 +47,9 @@ function App() {
             scrollButtons="auto"
             sx={{ flexGrow: 1 }}
           >
-            <Tab label="Create Model" index="0" />
-            <Tab label="Stylization" index="1" />
-            <Tab label="Body Animation" index="2" />
-            <Tab label="Face Animation" index="3" />
+            <Tab label="Animated Face" index="0" />
+            <Tab label="Animated Body" index="1" />
+            <Tab label="Realistic Avatar" index="2" />
           </Tabs>
         </Toolbar>
       </AppBar>
@@ -90,15 +79,15 @@ function App() {
           />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <AvatarBodyAnimation
-            bodyAnimation={bodyAnimation}
-            setBodyAnimation={setBodyAnimation}
-          />
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          <AvatarFacaAnimation
-            faceAnimData={faceAnimData}
-            setFaceAnimData={setFaceAnimData}
+          <AvatarCreate
+            faceBlendShape={faceBlendShape}
+            setFaceBlendShape={setFaceBlendShape}
+            eyeSize={eyeSize}
+            setEyeSize={setEyeSize}
+            eyeShape={eyeShape}
+            setEyeShape={setEyeShape}
+            skin={skin}
+            setSkin={setSkin}
           />
         </TabPanel>
       </Box>
