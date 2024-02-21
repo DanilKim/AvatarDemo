@@ -9,11 +9,11 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Add from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
 import Input from "@mui/material/Input";
-import RequestHttp from "./RequestHttp";
+import RequestHttp from "../../components/RequestHttp";
 import CreateAnimBtnViewModel from "./CreateAnimBtnViewModel";
 import axios from "axios";
-import input from "./jsoncomponents/input.json";
-import JsonToFaceAnim from "./face_animation/JsonToFaceAnim";
+import input from "../../components/jsoncomponents/input.json";
+import JsonToFaceAnim from "../../components/face_animation/JsonToFaceAnim";
 
 export default function CreateAnimBtnView({ ...props }) {
   const { open, handleClickOpen, handleClose } = new CreateAnimBtnViewModel();

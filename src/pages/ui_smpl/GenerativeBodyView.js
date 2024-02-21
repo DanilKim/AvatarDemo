@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import CreateWorld from "../pages/world_view/createworld";
+import CreateWorld from "../world_view/createworld";
 import {
   Avatar,
   Typography,
@@ -14,110 +14,18 @@ import {
 } from "@mui/material";
 
 import PropTypes from "prop-types";
-import CategoryButton from "./old_create_avatar/CategoryButtonList";
-import CreateAvatarBtn from "../pages/ui_flame/CreateFLAMEBtnView";
+import CategoryButton from "../../components/old_create_avatar/CategoryButtonList";
+import CreateAvatarBtn from "../../components/CreateAvatarBtnView";
 import {
   TabPanelBody,
   TabPanelHead,
   TabPanelItem,
   a11yProps,
-} from "./old_create_avatar/TabPanelList";
+} from "../../components/old_create_avatar/TabPanelList";
 
-export default function AvatarCreateView({ ...props }) {
+export default function GenerativeBodyView({ ...props }) {
   //변수 설정
   const [value, setValue] = React.useState(0);
-
-  const faceImagesName = [
-    "/static/images/face/Custom_FaceTemplate_00.png",
-    "/static/images/face/Custom_FaceTemplate_01.png",
-    "/static/images/face/Custom_FaceTemplate_02.png",
-    "/static/images/face/Custom_FaceTemplate_03.png",
-    "/static/images/face/Custom_FaceTemplate_04.png",
-    "/static/images/face/Custom_FaceTemplate_05.png",
-    "/static/images/face/Custom_FaceTemplate_06.png",
-  ];
-  const hairImagesName = [
-    "/static/images/hair/hair_01.png",
-    "/static/images/hair/hair_02.png",
-    "/static/images/hair/hair_03.png",
-    "/static/images/hair/hair_04.png",
-    "/static/images/hair/hair_05.png",
-    "/static/images/hair/hair_06.png",
-  ];
-  const eyebrowImagesName = [
-    "/static/images/eyebrow/eb_01.png",
-    "/static/images/eyebrow/eb_02.png",
-    "/static/images/eyebrow/eb_03.png",
-    "/static/images/eyebrow/eb_04.png",
-  ];
-  const eyeImagesName = [
-    "/static/images/eye/eye_template_00.png",
-    "/static/images/eye/eye_template_01.png",
-    "/static/images/eye/eye_template_02.png",
-    "/static/images/eye/eye_template_03.png",
-    "/static/images/eye/eye_template_04.png",
-    "/static/images/eye/eye_template_05.png",
-    "/static/images/eye/eye_template_06.png",
-    "/static/images/eye/eye_template_07.png",
-    "/static/images/eye/eye_template_08.png",
-    "/static/images/eye/eye_template_09.png",
-    "/static/images/eye/eye_template_10.png",
-    "/static/images/eye/eye_template_11.png",
-  ];
-  const glassesImagesName = [
-    "/static/images/glasses/acc_glasses_001.png",
-    "/static/images/glasses/acc_glasses_002.png",
-    "/static/images/glasses/acc_glasses_003.png",
-  ];
-  const noseImagesName = [
-    "/static/images/nose/custom_nose_template_00.png",
-    "/static/images/nose/custom_nose_template_01.png",
-    "/static/images/nose/custom_nose_template_02.png",
-    "/static/images/nose/custom_nose_template_03.png",
-    "/static/images/nose/custom_nose_template_04.png",
-    "/static/images/nose/custom_nose_template_05.png",
-    "/static/images/nose/custom_nose_template_06.png",
-    "/static/images/nose/custom_nose_template_07.png",
-  ];
-  const hatImagesName = [
-    "/static/images/hat/acc_hat_001.png",
-    "/static/images/hat/acc_hat_002.png",
-    "/static/images/hat/acc_hat_003.png",
-  ];
-  const topImagesName = [
-    "/static/images/top/cloth_top_001.png",
-    "/static/images/top/cloth_top_002.png",
-    "/static/images/top/cloth_top_003.png",
-    "/static/images/top/cloth_top_004.png",
-    "/static/images/top/cloth_top_005.png",
-  ];
-  const bottomImagesName = [
-    "/static/images/bottom/cloth_bottom_001.png",
-    "/static/images/bottom/cloth_bottom_002.png",
-    "/static/images/bottom/cloth_bottom_003.png",
-    "/static/images/bottom/cloth_bottom_004.png",
-    "/static/images/bottom/cloth_bottom_005.png",
-    "/static/images/bottom/cloth_bottom_006.png",
-  ];
-  const dressImagesName = [
-    "/static/images/dress/cloth_one_001.png",
-    "/static/images/dress/cloth_one_002.png",
-    "/static/images/dress/cloth_one_003.png",
-    "/static/images/dress/cloth_one_004.png",
-    "/static/images/dress/cloth_one_005.png",
-  ];
-  const suitsImagesName = [
-    "/static/images/suits/suits_001.png",
-    "/static/images/suits/suits_002.png",
-  ];
-  const shoesImagesName = [
-    "/static/images/shoes/shoes_share_001.png",
-    "/static/images/shoes/shoes_share_002.png",
-    "/static/images/shoes/shoes_share_003.png",
-    "/static/images/shoes/shoes_share_004.png",
-    "/static/images/shoes/shoes_share_005.png",
-    "/static/images/shoes/shoes_share_006.png",
-  ];
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -134,7 +42,6 @@ export default function AvatarCreateView({ ...props }) {
           borderRadius: 5,
         }}
       >
-        <CardHeader title="Blendshapes" sx={{ color: "white" }} />
         <CardContent>
           <TabPanelHead value={value} index={6}>
             <Card
