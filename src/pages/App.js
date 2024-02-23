@@ -11,7 +11,9 @@ import {
 import * as React from "react";
 import TabPanel from "../components/TabPanelView";
 //import AvatarCreate from "./ui_flame/GenerativeFaceView";
-import AvatarCreate from "./ui_flame/DECA/GenerativeDECAFaceView"
+import GenerativeDECAFaceView from "./ui_flame/DECA/GenerativeDECAFaceView"
+import GenerativeFaceView from "./ui_flame/GenerativeFaceView";
+import GenerativeBodyView from "./ui_smpl/GenerativeBodyView";
 
 import { useState } from "react";
 
@@ -56,7 +58,7 @@ function App() {
       </AppBar>
       <Box sx={{ height: "100%", pt: "4.5vh" }}>
         <TabPanel value={value} index={0}>
-          <AvatarCreate
+          <GenerativeFaceView
             faceBlendShape={faceBlendShape}
             setFaceBlendShape={setFaceBlendShape}
             eyeSize={eyeSize}
@@ -68,7 +70,7 @@ function App() {
           />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <AvatarCreate
+          <GenerativeBodyView
             faceBlendShape={faceBlendShape}
             setFaceBlendShape={setFaceBlendShape}
             eyeSize={eyeSize}
@@ -80,7 +82,7 @@ function App() {
           />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <AvatarCreate
+          <GenerativeFaceView
             faceBlendShape={faceBlendShape}
             setFaceBlendShape={setFaceBlendShape}
             eyeSize={eyeSize}

@@ -1,14 +1,15 @@
-import * as React from 'react';
+import * as React from "react";
 
-export default function CreateAvatarBtnViewModel() {
-    const [open, setOpen] = React.useState(false);
-    const handleClickOpen = () => {
-        setOpen(true);
-    }
+export default function CreateFLAMEBtnViewModel() {
+  const [open, setOpen] = React.useState(false);
 
-    const handleClose = () => {
-        setOpen(false);
-    }
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
 
-    return { open, handleClickOpen, handleClose }
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  return { open, handleClickOpen, handleClose };
 }
