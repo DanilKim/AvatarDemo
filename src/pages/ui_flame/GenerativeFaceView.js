@@ -1,21 +1,10 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import CreateWorld from "../world_view/createworld";
-import {
-  Avatar,
-  Typography,
-  Card,
-  CardHeader,
-  CardContent,
-  CardMedia,
-  Tab,
-  Tabs,
-  Slider,
-} from "@mui/material";
+import FaceWorld from "../world_view/faceworld";
+import { Card, CardMedia } from "@mui/material";
 
-import PropTypes from "prop-types";
-import CategoryButton from "../../components/old_create_avatar/CategoryButtonList";
-import CreateAvatarBtn from "./CreateFLAMEBtnView";
+import CreateFLAMEBtn from "./CreateFLAMEBtnView";
+import TmpBtnView from "./TmpBtnView";
 
 export default function GenerativeFaceView({ ...props }) {
   //변수 설정
@@ -36,19 +25,10 @@ export default function GenerativeFaceView({ ...props }) {
           borderRadius: 5,
         }}
       >
-        <CreateAvatarBtn
-          faceBlendShape={props.faceBlendShape}
-          setFaceBlendShape={props.setFaceBlendShape}
-          eyeSize={props.eyeSize}
-          setEyeSize={props.setEyeSize}
-          eyeShape={props.eyeShape}
-          setEyeShape={props.setEyeShape}
-          skin={props.skin}
-          setSkin={props.setSkin}
-        />
+        <TmpBtnView />
       </Card>
       <Box sx={{ height: "100%", width: "60%" }}>
-        <CreateWorld
+        <FaceWorld
           faceBlendShape={props.faceBlendShape}
           setFaceBlendShape={props.setFaceBlendShape}
           eyeSize={props.eyeSize}
