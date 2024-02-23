@@ -10,7 +10,8 @@ import {
 
 import * as React from "react";
 import TabPanel from "../components/TabPanelView";
-import AvatarCreate from "./ui_flame/GenerativeFaceView";
+//import AvatarCreate from "./ui_flame/GenerativeFaceView";
+import AvatarCreate from "./ui_flame/DECA/GenerativeDECAFaceView"
 
 import { useState } from "react";
 

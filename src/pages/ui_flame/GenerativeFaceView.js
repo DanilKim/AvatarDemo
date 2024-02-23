@@ -31,9 +31,10 @@ export default function GenerativeFaceView({ ...props }) {
         sx={{
           width: "20%",
           height: "97.5%",
-          m: "1.25%",
+          m: "1.0%",
           bgcolor: "#5f5f5f",
           borderRadius: 5,
+
         }}
       >
         <CreateAvatarBtn
