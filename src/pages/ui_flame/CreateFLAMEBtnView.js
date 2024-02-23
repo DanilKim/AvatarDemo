@@ -11,10 +11,10 @@ import Typography from "@mui/material/Typography";
 import axios from "axios";
 import Input from "@mui/material/Input";
 import RequestHttp from "../../components/RequestHttp";
-import CreateAvatarBtnViewModel from "./CreateFLAMEBtnViewModel";
+import CreateFLAMEBtnViewModel from "./CreateFLAMEBtnViewModel";
 
-export default function CreateAvatarBtnView({ ...props }) {
-  const { open, handleClickOpen, handleClose } = new CreateAvatarBtnViewModel();
+export default function CreateFLAMEBtnView({ ...props }) {
+  const { open, handleClickOpen, handleClose } = new CreateFLAMEBtnViewModel();
 
   return (
     <Box>
