@@ -1,3 +1,37 @@
+import { observable } from "mobx";
+import * as THREE from "three";
+
+const deca_store = observable({
+  inputImage: null,
+  style: "",
+  style_id: 0,
+  hair_id: 0,
+  sw: 40,
+
+  setInputImage(img) {
+    this.inputImage = img;
+  },
+
+  setStyle(style) {
+    this.style = style;
+  },
+
+  setStyleId(style_id) {
+    this.style_id = style_id;
+  },
+
+  setHairId(hair_id) {
+    this.hair_id = hair_id;
+  },
+
+  setSw(sw) {
+    this.sw = sw;
+  },
+});
+
+export { deca_store };
+
+/*
 import { action, makeObservable, observable } from "mobx";
 
 export class DECAStore {
@@ -47,3 +81,4 @@ export class DECAStore {
     }
 
 }
+*/
