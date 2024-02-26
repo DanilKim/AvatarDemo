@@ -4,6 +4,7 @@ import FaceWorld from "../world_view/faceworld";
 import { Card, CardMedia } from "@mui/material";
 
 import CreateFLAMEBtn from "./CreateFLAMEBtnView";
+import GenerativeDECAFaceView from "./DECA/GenerativeDECAFaceView";
 import TmpBtnView from "./TmpBtnView";
 
 export default function GenerativeFaceView({ ...props }) {

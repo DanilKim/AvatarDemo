@@ -23,8 +23,8 @@ import { styled } from "@mui/material/styles";
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: "relative",
   height: 150,
-  width: "40%",
-  left: 20
+  width: 150,
+  left: 50
 }));
 
 const ImageSrc = styled("span")({
@@ -60,7 +60,7 @@ function SelectStyleCard({ ...props }) {
 
   const [styPop, setStyPop] = useState(false);
 
-  const initStyleImg = "/static/images/face/Custom_FaceTemplate_00.png";
+  const initStyleImg = "/static/images/pixar/0.jpg";
 
 
   return (

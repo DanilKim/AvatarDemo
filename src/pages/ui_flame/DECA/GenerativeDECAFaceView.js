@@ -65,7 +65,7 @@ export default observer(function GenerativeFaceView({ ...props }) {
       <Card
         variant="elevation"
         sx={{
-          width: "20%",
+          width: "16%",
           height: "97.5%",
           m: "1.25%",
           bgcolor: "#5f5f5f",
@@ -97,7 +97,7 @@ export default observer(function GenerativeFaceView({ ...props }) {
           </Button>
         </CardContent>
       </Card>
-      <Box sx={{ height: "100%", width: "60%" }}>
+      <Box sx={{ height: "100%", width: "66.5%" }}>
         <CreateWorld
           faceBlendShape={props.faceBlendShape}
           setFaceBlendShape={props.setFaceBlendShape}

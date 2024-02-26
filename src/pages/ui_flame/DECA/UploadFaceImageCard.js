@@ -23,8 +23,8 @@ import { styled } from "@mui/material/styles";
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: "relative",
   height: 150,
-  width: "40%",
-  left: 20
+  width: 150,
+  left: 50
 }));
 
 const ImageSrc = styled("span")({
@@ -62,7 +62,7 @@ function UploadFaceImageCard({ ...props }) {
 
   const [imageSrc, setImageSrc] = useState(null);
   const [styleSrc, setStyleSrc] = useState(null);
-  const initInputImg = "/static/images/face/Custom_FaceTemplate_00.png";
+  const initInputImg = "/input/images/face.jpg";
   const initStyleImg = "/static/images/face/Custom_FaceTemplate_00.png";
 
 

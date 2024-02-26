@@ -58,7 +58,7 @@ function App() {
       </AppBar>
       <Box sx={{ height: "100%", pt: "4.5vh" }}>
         <TabPanel value={value} index={0}>
-          <GenerativeFaceView
+          <GenerativeDECAFaceView
             faceBlendShape={faceBlendShape}
             setFaceBlendShape={setFaceBlendShape}
             eyeSize={eyeSize}
