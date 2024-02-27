@@ -11,6 +11,7 @@ import {
 import * as React from "react";
 import TabPanel from "../components/TabPanelView";
 import AvatarCreate from "./ui_flame/GenerativeFaceView";
+import SmplifyCreate from "./ui_smplify/GenerativeSmplifyView";
 
 import { useState } from "react";
 
@@ -50,6 +51,7 @@ function App() {
             <Tab label="Animated Face" index="0" />
             <Tab label="Animated Body" index="1" />
             <Tab label="Realistic Avatar" index="2" />
+            <Tab label="Smplify" index="3" />
           </Tabs>
         </Toolbar>
       </AppBar>
@@ -80,6 +82,18 @@ function App() {
         </TabPanel>
         <TabPanel value={value} index={2}>
           <AvatarCreate
+            faceBlendShape={faceBlendShape}
+            setFaceBlendShape={setFaceBlendShape}
+            eyeSize={eyeSize}
+            setEyeSize={setEyeSize}
+            eyeShape={eyeShape}
+            setEyeShape={setEyeShape}
+            skin={skin}
+            setSkin={setSkin}
+          />
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          <SmplifyCreate
             faceBlendShape={faceBlendShape}
             setFaceBlendShape={setFaceBlendShape}
             eyeSize={eyeSize}
