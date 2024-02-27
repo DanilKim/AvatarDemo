@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import useStore from "../../store/UseStore";
 import LibraryViewModel from "./LibraryViewModel";
 const LibraryList = observer((props) => {
-  const { image_list, theme_list } = LibraryViewModel();
+  const { image_list, theme_list, index_list } = LibraryViewModel();
   const { common_store, data_store } = useStore();
   return (
     <>
@@ -32,8 +32,9 @@ const LibraryList = observer((props) => {
             {theme_list[index] === props.type && (
               <IconButton
                 onClick={() => {
-                  common_store.setLibraryIdx(index);
-                  console.log(index);
+                  common_store.setLibraryIdx(index_list[index]);
+                  console.log(common_store.libraryIdx);
+                  console.log(common_store.styleIdx);
                 }}
                 sx={{
                   width: "122px",
