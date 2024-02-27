@@ -3,10 +3,12 @@ import * as THREE from "three";
 
 const deca_store = observable({
   inputImage: null,
-  style: "",
+  style: "pixar",
   style_id: 0,
-  hair_id: 0,
+  hair_id: 1,
   sw: 40,
+  model_url: null,
+  loading: false,
 
   setInputImage(img) {
     this.inputImage = img;
@@ -27,6 +29,15 @@ const deca_store = observable({
   setSw(sw) {
     this.sw = sw;
   },
+
+  setModelURL(url) {
+    this.model_url = url;
+  },
+
+  setLoading(load) {
+    this.loading = load;
+  }
+
 });
 
 export { deca_store };
