@@ -6,6 +6,7 @@ export default function LibraryViewModel(props) {
   let file_list = [];
   let category_list = [];
   let theme_list = [];
+  let index_list = [];
   let tmpType = "";
   let tmpNum = 0;
   let tmpName = "";
@@ -17,18 +18,16 @@ export default function LibraryViewModel(props) {
     tmpNum = itemList[i][1];
     tmpName = "url(/static/images/" + tmpType + "/" + String(tmpNum) + ".jpg)";
     for (let j = 0; j < tmpNum; j++) {
-      //console.log(itemList[i][0]);
+      index_list.push(j);
       theme_list.push(tmpType);
       tmpName = "url(/static/images/" + tmpType + "/" + String(j) + ".jpg)";
       image_list.push(tmpName);
     }
   }
-  //file_list = Array.from(itemList, (x) => `${x[1]}`);
-  //theme_list = Array.from(itemList, (x) => `${x[1].split("_")[1]}`);
-  //category_list = Array.from(itemList, (x) => `${x[1].split("_")[2]}`);
 
   return {
     image_list,
     theme_list,
+    index_list,
   };
 }

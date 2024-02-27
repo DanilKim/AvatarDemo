@@ -17,6 +17,7 @@ const theme = createTheme({
 const LibraryDialog = observer((props) => {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
+    common_store.setStyleIdx(newValue);
     setValue(newValue);
   };
   const { common_store } = useStore();

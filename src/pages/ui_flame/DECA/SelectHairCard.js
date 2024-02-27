@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import ButtonBase from "@mui/material/ButtonBase"
+import ButtonBase from "@mui/material/ButtonBase";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -10,21 +10,22 @@ import DialogTitle from "@mui/material/DialogTitle";
 import Slider from "@mui/material/Slider";
 import Add from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid"
+import Grid from "@mui/material/Grid";
 import axios from "axios";
 import MuiInput from "@mui/material/Input";
 import RequestHttp from "../../../components/RequestHttp";
 
-import { observer } from 'mobx-react';
-import { useState, useEffect } from 'react';
-import { useStores } from '../../../store/Context';
+import { observer } from "mobx-react";
+import { useState, useEffect } from "react";
+import useStore from "../../../store/UseStore";
+//import { useStores } from '../../../store/Context';
 import { styled } from "@mui/material/styles";
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: "relative",
   height: 150,
   width: 150,
-  left: 50
+  left: 50,
 }));
 
 const ImageSrc = styled("span")({
@@ -54,20 +55,22 @@ const Input = styled(MuiInput)`
   width: 40px;
 `;
 
-
 function SelectHairCard({ ...props }) {
-  const { DECAStore } = useStores();
+  //const { DECAStore } = useStores();
+  const { deca_store } = useStore();
 
   const [hairPop, setHairPop] = useState(false);
 
   const initHairImg = "/static/images/anime/0.jpg";
 
-
   return (
-    <Box sx={{mt: 2, algnItems: "center", justifyContent: "center"}}>
-
-      <ImageButton onClick={()=>{setHairPop(true)}}>
-        <ImageSrc style={{ backgroundImage: 'url("' + initHairImg +'")'}} />
+    <Box sx={{ mt: 2, algnItems: "center", justifyContent: "center" }}>
+      <ImageButton
+        onClick={() => {
+          setHairPop(true);
+        }}
+      >
+        <ImageSrc style={{ backgroundImage: 'url("' + initHairImg + '")' }} />
         <Image>
           <Add sx={{ color: "white", mt: 5 }} />
           <Typography variant="body1" sx={{ color: "white", mb: 5 }}>
@@ -76,13 +79,16 @@ function SelectHairCard({ ...props }) {
         </Image>
       </ImageButton>
 
-      <Dialog open={hairPop} onClose={()=>{setHairPop(false)}}>
+      <Dialog
+        open={hairPop}
+        onClose={() => {
+          setHairPop(false);
+        }}
+      >
         <DialogTitle>스타일 선택</DialogTitle>
-        
       </Dialog>
-
     </Box>
   );
 }
 
-export default observer(SelectHairCard)
+export default observer(SelectHairCard);

@@ -15,6 +15,7 @@ import UploadFaceImageCard from "./UploadFaceImageCard";
 import SelectStyleCard from "./SelectStyleCard";
 import SelectHairCard from "./SelectHairCard";
 import SWSliderCard from "./SWSliderCard";
+import TmpBtnView from "../TmpBtnView";
 
 import { observer } from "mobx-react";
 import useStore from "../../../store/UseStore";
@@ -88,6 +89,7 @@ export default observer(function GenerativeFaceView({ ...props }) {
           <SelectStyleCard />
           <SelectHairCard />
           <SWSliderCard />
+          <TmpBtnView />
           <Button
             color="inherit"
             sx={{

@@ -50,7 +50,12 @@ const common_store = observable({
     this.isTransControl = mode;
   },
 
+  styleIdx: -1,
   libraryIdx: -1,
+
+  setStyleIdx(idx) {
+    this.styleIdx = idx;
+  },
   setLibraryIdx(idx) {
     this.libraryIdx = idx;
   },
