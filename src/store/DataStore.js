@@ -13,23 +13,20 @@ const data_store = observable({
     ["pixar", 122],
     ["slamdunk", 120],
   ],
-  image_list: [],
-  theme_list: [],
-  index_list: [],
 
-  SetList() {
-    for (let i = 0; i < this.item_list.length; i++) {
-      let tmpName =
+  image_list: [],
+
+  SetList(styleIdx) {
+    this.image_list = [];
+
+    for (let i = 0; i < this.item_list[styleIdx][1]; i++) {
+      this.image_list.push(
         "url(/static/images/" +
-        this.item_list[i][0] +
-        "/" +
-        String(this.item_list[i][1]) +
-        ".jpg)";
-      for (let j = 0; j < this.item_list[i][1]; j++) {
-        this.theme_list.push(this.item_list[i][0]);
-        this.image_list.push(tmpName);
-        this.index_list.push(this.item_list[i][1]);
-      }
+          this.item_list[styleIdx][0] +
+          "/" +
+          String(i) +
+          ".jpg)"
+      );
     }
   },
 });
