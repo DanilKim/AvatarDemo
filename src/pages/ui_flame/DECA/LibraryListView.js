@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Box, IconButton, Grid } from "@mui/material";
 import { observer } from "mobx-react-lite";
-import useStore from "../../store/UseStore";
-import LibraryViewModel from "./LibraryViewModel";
+import useStore from "../../../store/UseStore";
+
 const LibraryList = observer((props) => {
-  const { image_list, theme_list, index_list } = LibraryViewModel();
   const { common_store, data_store } = useStore();
   return (
     <>
@@ -20,7 +19,7 @@ const LibraryList = observer((props) => {
         }}
         style={{ display: "flex", justifyContent: "flex-start" }}
       >
-        {Array.from(image_list).map((object, index) => (
+        {Array.from(data_store.image_list).map((object, index) => (
           <Box
             key={index}
             sx={{
@@ -29,12 +28,13 @@ const LibraryList = observer((props) => {
               justifyContent: "center",
             }}
           >
-            {theme_list[index] === props.type && (
+            {data_store.theme_list[index] === props.type && (
               <IconButton
                 onClick={() => {
-                  common_store.setLibraryIdx(index_list[index]);
+                  common_store.setStyle(data_store.theme_list[index]);
+                  common_store.setLibraryIdx(data_store.index_list[index]);
+                  console.log(common_store.style);
                   console.log(common_store.libraryIdx);
-                  console.log(common_store.styleIdx);
                 }}
                 sx={{
                   width: "122px",
@@ -51,7 +51,7 @@ const LibraryList = observer((props) => {
                   border: 1,
                   borderRadius: "8px",
                   borderColor:
-                    index === common_store.libraryIdx ? "#e3f853" : "#494949",
+                    data_store.index_list[index] === common_store.libraryIdx ? "#e3f853" : "#494949",
                   fontFamily: "SourceHanSansKR",
                   fontSize: "14px",
                   fontWeight: "500",

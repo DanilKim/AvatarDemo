@@ -1,4 +1,4 @@
-import useStore from "../../store/UseStore";
+import useStore from "../../../store/UseStore";
 
 export default function LibraryViewModel(props) {
   const { data_store } = useStore();

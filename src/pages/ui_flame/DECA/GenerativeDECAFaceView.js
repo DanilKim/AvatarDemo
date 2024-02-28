@@ -89,7 +89,6 @@ export default observer(function GenerativeFaceView({ ...props }) {
           <SelectStyleCard />
           <SelectHairCard />
           <SWSliderCard />
-          <TmpBtnView />
           <Button
             color="inherit"
             sx={{

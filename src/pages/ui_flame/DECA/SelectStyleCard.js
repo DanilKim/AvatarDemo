@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 import MuiInput from "@mui/material/Input";
-import RequestHttp from "../../../components/RequestHttp";
+import LibraryDialog from "./LibraryView";
 
 import { observer } from "mobx-react";
 import { useState, useEffect } from "react";
@@ -56,7 +56,7 @@ const Input = styled(MuiInput)`
 `;
 
 function SelectStyleCard({ ...props }) {
-  const { deca_store } = useStore();
+  const { common_store, deca_store, data_store } = useStore();
 
   const [styPop, setStyPop] = useState(false);
   const [styImg, setStyImg] = useState("/static/images/pixar/0.jpg");
@@ -68,6 +68,7 @@ function SelectStyleCard({ ...props }) {
       <ImageButton
         onClick={() => {
           setStyPop(true);
+          data_store.SetList();
         }}
       >
         <ImageSrc style={{ 
@@ -83,6 +84,25 @@ function SelectStyleCard({ ...props }) {
           </Typography>
         </Image>
       </ImageButton>
+
+      <Dialog
+        maxWidth="1080px"
+        open={styPop}
+        onClose={() => {
+          common_store.changeAsset("");
+          common_store.setLibraryIdx(-1);
+          setStyPop(false);
+        }}
+        PaperProps={{
+          sx: {
+            borderColor: "#1C1C1C",
+            borderRadius: "8px",
+            border: 0.5,
+          },
+        }}
+      >
+        <LibraryDialog onClose={()=>{setStyPop(false)}} />
+      </Dialog>
     </Box>
   );
 }

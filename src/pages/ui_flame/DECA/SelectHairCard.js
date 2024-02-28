@@ -1,19 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
 import ButtonBase from "@mui/material/ButtonBase";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import Slider from "@mui/material/Slider";
 import Add from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import axios from "axios";
 import MuiInput from "@mui/material/Input";
-import RequestHttp from "../../../components/RequestHttp";
+import HairDialog from "./HairView";
 
 import { observer } from 'mobx-react';
 import { useState, useEffect } from 'react';
@@ -51,23 +43,22 @@ const Image = styled("span")(({ theme }) => ({
   color: theme.palette.common.white,
 }));
 
-const Input = styled(MuiInput)`
-  width: 40px;
-`;
+
 
 function SelectHairCard({ ...props }) {
-  const { deca_store } = useStore();
+  const { common_store, deca_store, data_store } = useStore();
 
   const [hairPop, setHairPop] = useState(false);
 
-  const initHairImg = "/static/images/anime/0.jpg";
 
   return (
     <Box sx={{mt: 2, algnItems: "center", justifyContent: "center"}}>
 
-      <ImageButton onClick={()=>{deca_store.setHairId((deca_store.hair_id+1)%15)}}>
-        <ImageSrc style={{ backgroundImage: 'url("/static/images/hair_preview/' 
-          + deca_store.hair_id
+      <ImageButton 
+        onClick={() => {setHairPop(true);}}
+      >
+        <ImageSrc style={{ backgroundImage: 'url("/static/hair_preview/' 
+          + data_store.hair_list[deca_store.hair_id]
           + '.png")'}} />
         <Image>
           <Add sx={{ color: "white", mt: 5 }} />
@@ -78,12 +69,21 @@ function SelectHairCard({ ...props }) {
       </ImageButton>
 
       <Dialog
+        maxWidth="1080px"
         open={hairPop}
         onClose={() => {
+          common_store.setHairIdx(-1);
           setHairPop(false);
         }}
+        PaperProps={{
+          sx: {
+            borderColor: "#1C1C1C",
+            borderRadius: "8px",
+            border: 0.5,
+          },
+        }}
       >
-        <DialogTitle>스타일 선택</DialogTitle>
+        <HairDialog onClose={()=>{setHairPop(false)}} />
       </Dialog>
     </Box>
   );

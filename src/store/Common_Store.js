@@ -50,14 +50,25 @@ const common_store = observable({
     this.isTransControl = mode;
   },
 
+  style: "",
   styleIdx: -1,
   libraryIdx: -1,
+  hairIdx: -1,
 
+  setStyle(sty) {
+    this.style = sty;
+  },
+  
   setStyleIdx(idx) {
     this.styleIdx = idx;
   },
+
   setLibraryIdx(idx) {
     this.libraryIdx = idx;
+  },
+
+  setHairIdx(idx) {
+    this.hairIdx = idx;
   },
 
   curMode: "translate",

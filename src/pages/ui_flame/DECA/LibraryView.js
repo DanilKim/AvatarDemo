@@ -4,7 +4,7 @@ import { observer } from "mobx-react-lite";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material";
 import LibraryPanel from "./LibraryPanelsView";
-import useStore from "../../store/UseStore";
+import useStore from "../../../store/UseStore";
 
 const theme = createTheme({
   palette: {
@@ -20,7 +20,7 @@ const LibraryDialog = observer((props) => {
     common_store.setStyleIdx(newValue);
     setValue(newValue);
   };
-  const { common_store } = useStore();
+  const { common_store, deca_store } = useStore();
 
   return (
     <>
@@ -87,7 +87,7 @@ const LibraryDialog = observer((props) => {
                   minWidth: "60px",
                   width: "60px",
                 }}
-                label={"pixar"}
+                label={"anime"}
               />
               <Tab
                 sx={{
@@ -199,6 +199,8 @@ const LibraryDialog = observer((props) => {
             onClick={async () => {
               if (common_store.libraryIdx !== -1) {
                 props.onClose();
+                deca_store.setStyle(common_store.style);
+                deca_store.setStyleId(common_store.libraryIdx);
                 common_store.setLibraryIdx(-1);
               }
             }}

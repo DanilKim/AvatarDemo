@@ -13,7 +13,7 @@ import axios from "axios";
 import Input from "@mui/material/Input";
 import RequestHttp from "../../components/RequestHttp";
 import CreateFLAMEBtnViewModel from "./CreateFLAMEBtnViewModel";
-import LibraryDialog from "./LibraryView";
+import LibraryDialog from "./DECA/LibraryView";
 
 export default function TmpBtnView({ ...props }) {
   const { open, handleClickOpen, handleClose } = new CreateFLAMEBtnViewModel();
@@ -47,7 +47,7 @@ export default function TmpBtnView({ ...props }) {
         open={open}
         onClose={() => {
           common_store.changeAsset("");
-          common_store.setLibraryIdx(-1);
+          common_store.setStyleIdx(-1);
           handleClose();
         }}
         PaperProps={{
