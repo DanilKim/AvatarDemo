@@ -92,27 +92,27 @@ const Uploader = ({ ...props }) => {
     if (image.image_file_1 && image.image_file_2) {
       setLoading(true);
 
-      /*
-      Generate Avatar from input images
-      */
-      const formData = new FormData()
-      formData.append('front_body', image.image_file_1);
-      formData.append('back_body', image.image_file_2);
+      // /*
+      // Generate Avatar from input images
+      // */
+      // const formData = new FormData()
+      // formData.append('front_body', image.image_file_1);
+      // formData.append('back_body', image.image_file_2);
       
-      try {
-        const response = await axios({
-          method: "POST",
-          url:"http://222.122.67.140:52222/post",
-          headers: { "content-type": "multipart/form-data" },
-          data: formData
-        });
+      // try {
+      //   const response = await axios({
+      //     method: "POST",
+      //     url:"http://222.122.67.140:52222/post",
+      //     headers: { "content-type": "multipart/form-data" },
+      //     data: formData
+      //   });
 
-        console.log(response);
-      }
-      catch (err)
-      {
-        console.log(err);
-      }
+      //   console.log(response);
+      // }
+      // catch (err)
+      // {
+      //   console.log(err);
+      // }
 
       /*
       Get generated avatar from server

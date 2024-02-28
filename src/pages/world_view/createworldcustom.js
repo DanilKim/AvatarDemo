@@ -1,11 +1,8 @@
 import React, { Suspense } from "react";
-
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-
-
-// import AvatarTempObj from "../../components/old_create_avatar/AvatarTemp";
 import AvatarTempGlb from "../../components/old_create_avatar/AvatarTempGlb";
+
 
 export default function CreateWorld({ ...props }) {
   return (
