@@ -11,16 +11,7 @@ export default function CreateWorld({ ...props }) {
       <ambientLight intensity={0.5} />
       <directionalLight position={[-2, 5, 2]} intensity={1} />
       <Suspense fallback={null}>
-        <AvatarTempGlb
-          faceBlendShape={props.faceBlendShape}
-          setFaceBlendShape={props.setFaceBlendShape}
-          eyeSize={props.eyeSize}
-          setEyeSize={props.setEyeSize}
-          eyeShape={props.eyeShape}
-          setEyeShape={props.setEyeShape}
-          skin={props.skin}
-          setSkin={props.setSkin}
-        />
+        <AvatarTempGlb/>
       </Suspense>
     </Canvas>
   );

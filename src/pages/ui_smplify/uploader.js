@@ -14,7 +14,7 @@ import useStore from "../../store/UseStore";
 const Uploader = ({ ...props }) => {
   const { smplify_store } = useStore();
 
-  const default_img_path = "/static/images/avatar_body.png";
+  const default_img_path = "/static/images/common/avatar_body.png";
   const [loading, setLoading] = useState(false);
   const loadingSize = 40;
 
@@ -92,27 +92,29 @@ const Uploader = ({ ...props }) => {
     if (image.image_file_1 && image.image_file_2) {
       setLoading(true);
 
-      // /*
-      // Generate Avatar from input images
-      // */
-      // const formData = new FormData()
-      // formData.append('front_body', image.image_file_1);
-      // formData.append('back_body', image.image_file_2);
+      /*
+      Generate Avatar from input images
+      */
+      const formData = new FormData()
+      formData.append('front_body', image.image_file_1);
+      formData.append('back_body', image.image_file_2);
       
-      // try {
-      //   const response = await axios({
-      //     method: "POST",
-      //     url:"http://222.122.67.140:52222/post",
-      //     headers: { "content-type": "multipart/form-data" },
-      //     data: formData
-      //   });
+      try {
+        const response = await axios({
+          method: "POST",
+          url:"http://222.122.67.140:52222/post",
+          headers: { "content-type": "multipart/form-data" },
+          data: formData
+        });
 
-      //   console.log(response);
-      // }
-      // catch (err)
-      // {
-      //   console.log(err);
-      // }
+        console.log(response);
+      }
+      catch (err)
+      {
+        console.log(err);
+        setLoading(false);
+        alert("생성 실패했습니다. AI 서버 상태를 확인해주세요.");
+      }
 
       /*
       Get generated avatar from server
@@ -137,20 +139,22 @@ const Uploader = ({ ...props }) => {
         // link.click();
         // link.remove();
         // window.URL.revokeObjectURL(fileObjectUrl);
+      
+        alert("생성이 완료되었습니다!");
+        setImage({
+          image_file_1: "",
+          preview_URL_1: default_img_path,
+          image_file_2: "",
+          preview_URL_2: default_img_path,
+        });
+        setLoading(false);
       }
       catch (err)
       {
         console.log(err);
+        setLoading(false);
+        alert("결과를 가져오지 못했습니다.");
       }
-
-      alert("생성이 완료되었습니다!");
-      setImage({
-        image_file_1: "",
-        preview_URL_1: default_img_path,
-        image_file_2: "",
-        preview_URL_2: default_img_path,
-      });
-      setLoading(false);
     } else {
       alert("사진을 등록하세요!")
     }
