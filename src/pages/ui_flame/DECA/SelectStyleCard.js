@@ -56,10 +56,10 @@ const Input = styled(MuiInput)`
 `;
 
 function SelectStyleCard({ ...props }) {
-  //const { DECAStore } = useStores();
-  const { common_store, deca_store } = useStore();
+  const { deca_store } = useStore();
 
   const [styPop, setStyPop] = useState(false);
+  const [styImg, setStyImg] = useState("/static/images/pixar/0.jpg");
 
   const initStyleImg = "/static/images/pixar/0.jpg";
 
@@ -70,7 +70,12 @@ function SelectStyleCard({ ...props }) {
           setStyPop(true);
         }}
       >
-        <ImageSrc style={{ backgroundImage: 'url("' + initStyleImg + '")' }} />
+        <ImageSrc style={{ 
+          backgroundImage: 'url("/static/images/' 
+          + deca_store.style
+          + '/' 
+          + deca_store.style_id 
+          + '.jpg")' }} />
         <Image>
           <Add sx={{ color: "white", mt: 5 }} />
           <Typography variant="body1" sx={{ color: "white", mb: 5 }}>

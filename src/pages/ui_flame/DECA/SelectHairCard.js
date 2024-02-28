@@ -17,8 +17,9 @@ import RequestHttp from "../../../components/RequestHttp";
 
 import { observer } from 'mobx-react';
 import { useState, useEffect } from 'react';
-import { useStores } from '../../../store/Context';
 import { styled } from "@mui/material/styles";
+
+import useStore from "../../../store/UseStore";
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: "relative",
@@ -56,7 +57,7 @@ const Input = styled(MuiInput)`
 
 
 function SelectHairCard({ ...props }) {
-  const { DECAStore } = useStores();
+  const { deca_store } = useStore();
 
   const [hairPop, setHairPop] = useState(false);
 
@@ -66,8 +67,10 @@ function SelectHairCard({ ...props }) {
   return (
     <Box sx={{mt: 2, algnItems: "center", justifyContent: "center"}}>
 
-      <ImageButton onClick={()=>{setHairPop(true)}}>
-        <ImageSrc style={{ backgroundImage: 'url("' + initHairImg +'")'}} />
+      <ImageButton onClick={()=>{deca_store.setHairId((deca_store.hair_id+1)%15)}}>
+        <ImageSrc style={{ backgroundImage: 'url("/static/images/hair_preview/' 
+          + deca_store.hair_id
+          + '.png")'}} />
         <Image>
           <Add sx={{ color: "white", mt: 5 }} />
           <Typography variant="body1" sx={{ color: "white", mb: 5 }}>
