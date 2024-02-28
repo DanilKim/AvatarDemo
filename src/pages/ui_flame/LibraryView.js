@@ -18,9 +18,11 @@ const LibraryDialog = observer((props) => {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     common_store.setStyleIdx(newValue);
+    common_store.setLibraryIdx(-1);
+    data_store.SetList(newValue);
     setValue(newValue);
   };
-  const { common_store } = useStore();
+  const { common_store, data_store } = useStore();
 
   return (
     <>
@@ -82,91 +84,23 @@ const LibraryDialog = observer((props) => {
               value={value}
               onChange={handleChange}
             >
-              <Tab
-                sx={{
-                  minWidth: "60px",
-                  width: "60px",
-                }}
-                label={"pixar"}
-              />
-              <Tab
-                sx={{
-                  minWidth: "72px",
-                  width: "72px",
-                }}
-                label={"arcane"}
-              />
-              <Tab
-                sx={{
-                  minWidth: "104px",
-                  width: "104px",
-                }}
-                label={"caricature"}
-              />
-              <Tab
-                sx={{
-                  minWidth: "72px",
-                  width: "72px",
-                }}
-                label={"cartoon"}
-              />
-              <Tab
-                sx={{
-                  minWidth: "60px",
-                  width: "60px",
-                }}
-                label={"comic"}
-              />
-              <Tab
-                sx={{
-                  minWidth: "72px",
-                  width: "72px",
-                }}
-                label={"fantasy"}
-              />
-              <Tab
-                sx={{
-                  minWidth: "116px",
-                  width: "116px",
-                }}
-                label={"illustration"}
-              />
-              <Tab
-                sx={{
-                  minWidth: "72px",
-                  width: "72px",
-                }}
-                label={"impasto"}
-              />
-              <Tab
-                sx={{
-                  minWidth: "72px",
-                  width: "72px",
-                }}
-                label={"pixar"}
-              />
-              <Tab
-                sx={{
-                  minWidth: "84px",
-                  width: "84px",
-                }}
-                label={"slamdunk"}
-              />
+              {Array.from(data_store.item_list).map((object, index) => (
+                <Tab
+                  key={index}
+                  sx={{
+                    minWidth: String(12 * object[0].length) + "px",
+                    width: String(12 * object[0].length) + "px",
+                  }}
+                  label={object[0]}
+                />
+              ))}
             </Tabs>
           </ThemeProvider>
         </Box>
         <Box>
-          <LibraryPanel value={value} index={0} />
-          <LibraryPanel value={value} index={1} />
-          <LibraryPanel value={value} index={2} />
-          <LibraryPanel value={value} index={3} />
-          <LibraryPanel value={value} index={4} />
-          <LibraryPanel value={value} index={5} />
-          <LibraryPanel value={value} index={6} />
-          <LibraryPanel value={value} index={7} />
-          <LibraryPanel value={value} index={8} />
-          <LibraryPanel value={value} index={9} />
-          <LibraryPanel value={value} index={10} />
+          {Array.from(data_store.item_list).map((object, index) => (
+            <LibraryPanel key={index} value={value} index={index} />
+          ))}
         </Box>
         <Box
           sx={{

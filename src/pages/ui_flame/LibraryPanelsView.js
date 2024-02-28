@@ -22,13 +22,12 @@ const LibraryPanel = observer((props) => {
       {value === 1 && <LibraryList type={"arcane"} />}
       {value === 2 && <LibraryList type={"caricature"} />}
       {value === 3 && <LibraryList type={"cartoon"} />}
-      {value === 4 && <LibraryList type={"health"} />}
-      {value === 5 && <LibraryList type={"comic"} />}
-      {value === 6 && <LibraryList type={"fantasy"} />}
-      {value === 7 && <LibraryList type={"illustration"} />}
-      {value === 8 && <LibraryList type={"impasto"} />}
-      {value === 9 && <LibraryList type={"pixar"} />}
-      {value === 10 && <LibraryList type={"slamdunk"} />}
+      {value === 4 && <LibraryList type={"comic"} />}
+      {value === 5 && <LibraryList type={"fantasy"} />}
+      {value === 6 && <LibraryList type={"illustration"} />}
+      {value === 7 && <LibraryList type={"impasto"} />}
+      {value === 8 && <LibraryList type={"pixar"} />}
+      {value === 9 && <LibraryList type={"slamdunk"} />}
     </Box>
   );
 });
