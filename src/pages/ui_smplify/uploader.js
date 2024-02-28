@@ -14,7 +14,7 @@ import useStore from "../../store/UseStore";
 const Uploader = ({ ...props }) => {
   const { smplify_store } = useStore();
 
-  const default_img_path = "/static/images/avatar_body.png";
+  const default_img_path = "/static/images/common/avatar_body.png";
   const [loading, setLoading] = useState(false);
   const loadingSize = 40;
 
@@ -112,6 +112,8 @@ const Uploader = ({ ...props }) => {
       catch (err)
       {
         console.log(err);
+        setLoading(false);
+        alert("생성 실패했습니다. AI 서버 상태를 확인해주세요.");
       }
 
       /*
@@ -128,29 +130,23 @@ const Uploader = ({ ...props }) => {
         const blob = new Blob([response.data]);
         const fileObjectUrl = window.URL.createObjectURL(blob);
         smplify_store.setObjPath(fileObjectUrl);
-        // const link = document.createElement("a");
-        // link.href = fileObjectUrl;
-        // link.style.display = "none";
-        // // link.download = response.headers['content-disposition'];
-        // link.download = "test_name.glb";
-        // document.body.appendChild(link);
-        // link.click();
-        // link.remove();
-        // window.URL.revokeObjectURL(fileObjectUrl);
+      
+        alert("생성이 완료되었습니다!");
+        setImage({
+          image_file_1: "",
+          preview_URL_1: default_img_path,
+          image_file_2: "",
+          preview_URL_2: default_img_path,
+        });
+        setLoading(false);
+        props.closeFunc();
       }
       catch (err)
       {
         console.log(err);
+        setLoading(false);
+        alert("결과를 가져오지 못했습니다.");
       }
-
-      alert("생성이 완료되었습니다!");
-      setImage({
-        image_file_1: "",
-        preview_URL_1: default_img_path,
-        image_file_2: "",
-        preview_URL_2: default_img_path,
-      });
-      setLoading(false);
     } else {
       alert("사진을 등록하세요!")
     }

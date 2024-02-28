@@ -68,7 +68,7 @@ function SelectStyleCard({ ...props }) {
       <ImageButton
         onClick={() => {
           setStyPop(true);
-          data_store.SetList();
+          data_store.SetList(0);
         }}
       >
         <ImageSrc style={{ 

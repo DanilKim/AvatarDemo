@@ -49,19 +49,12 @@ export default observer(function GenerativeFaceView({ ...props }) {
         responseType: "blob"
       });
       
-      console.log(res);
       const model = new Blob([res.data]);
       deca_store.setModelURL(URL.createObjectURL(model));
-      console.log(deca_store.model_url);
       deca_store.setLoading(false);
     }
     catch (error)
     {
-        console.log(deca_store.inputImage);
-        console.log(deca_store.style);
-        console.log(deca_store.style_id);
-        console.log(deca_store.hair_id);
-        console.log(deca_store.sw/100);
         console.log(error);
         deca_store.setLoading(false);
     }

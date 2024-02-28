@@ -2,8 +2,11 @@ import { Box } from "@mui/material";
 import { observer } from "mobx-react-lite";
 import PropTypes from "prop-types";
 import LibraryList from "./LibraryListView";
+import useStore from "../../../store/UseStore";
+
 const LibraryPanel = observer((props) => {
   const { children, value, index, ...other } = props;
+  const { data_store } = useStore();
 
   return (
     <Box
@@ -18,17 +21,9 @@ const LibraryPanel = observer((props) => {
       hidden={value !== index}
       {...other}
     >
-      {value === 0 && <LibraryList type={"anime"} />}
-      {value === 1 && <LibraryList type={"arcane"} />}
-      {value === 2 && <LibraryList type={"caricature"} />}
-      {value === 3 && <LibraryList type={"cartoon"} />}
-      {value === 4 && <LibraryList type={"health"} />}
-      {value === 5 && <LibraryList type={"comic"} />}
-      {value === 6 && <LibraryList type={"fantasy"} />}
-      {value === 7 && <LibraryList type={"illustration"} />}
-      {value === 8 && <LibraryList type={"impasto"} />}
-      {value === 9 && <LibraryList type={"pixar"} />}
-      {value === 10 && <LibraryList type={"slamdunk"} />}
+      {Array.from(data_store.item_list).map((object, index) => (
+        value === index && <LibraryList type={object} />
+      ))}
     </Box>
   );
 });

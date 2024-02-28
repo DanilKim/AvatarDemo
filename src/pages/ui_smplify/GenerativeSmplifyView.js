@@ -37,28 +37,10 @@ export default function GenerativeFaceView({ ...props }) {
           borderRadius: 5,
         }}
       >
-        <CreateAvatarBtn
-          faceBlendShape={props.faceBlendShape}
-          setFaceBlendShape={props.setFaceBlendShape}
-          eyeSize={props.eyeSize}
-          setEyeSize={props.setEyeSize}
-          eyeShape={props.eyeShape}
-          setEyeShape={props.setEyeShape}
-          skin={props.skin}
-          setSkin={props.setSkin}
-        />
+        <CreateAvatarBtn/>
       </Card>
       <Box sx={{ height: "100%", width: "60%" }}>
-        <CreateWorldCustom
-          faceBlendShape={props.faceBlendShape}
-          setFaceBlendShape={props.setFaceBlendShape}
-          eyeSize={props.eyeSize}
-          setEyeSize={props.setEyeSize}
-          eyeShape={props.eyeShape}
-          setEyeShape={props.setEyeShape}
-          skin={props.skin}
-          setSkin={props.setSkin}
-        />
+        <CreateWorldCustom/>
       </Box>
 
       <Box

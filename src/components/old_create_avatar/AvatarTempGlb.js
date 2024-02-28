@@ -14,9 +14,10 @@ import * as THREE from 'three';
 import { PropaneSharp } from '@mui/icons-material';
 import { useTexture } from '@react-three/drei';
 import useStore from "../../store/UseStore";
+import { observer } from 'mobx-react';
 
 
-export default function Model({ ...props }) {
+function Model({ ...props }) {
   const { smplify_store } = useStore();
 
   const model = useLoader(GLTFLoader, smplify_store.obj_path).scene;
@@ -25,3 +26,5 @@ export default function Model({ ...props }) {
     <primitive object={model}></primitive>
   )
 }
+
+export default observer(Model);

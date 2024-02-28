@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from "mobx";
+import { observable } from "mobx";
 
 const data_store = observable({
   item_list: [
@@ -13,23 +13,20 @@ const data_store = observable({
     ["pixar", 122],
     ["slamdunk", 120],
   ],
-  image_list: [],
-  theme_list: [],
-  index_list: [],
-  set_list: false,
 
-  SetList() {
-    if (!this.set_list) {
-      for (let i = 0; i < this.item_list.length; i++) {
-        let tmpType = this.item_list[i][0];
-        for (let j = 0; j < this.item_list[i][1]; j++) {
-          this.index_list.push(j);
-          this.theme_list.push(tmpType);
-          let tmpName = "url(/static/images/" + tmpType + "/" + String(j) + ".jpg)";
-          this.image_list.push(tmpName);
-        };
-      };
-      this.set_list = true;
+  image_list: [],
+
+  SetList(styleIdx) {
+    this.image_list = [];
+
+    for (let i = 0; i < this.item_list[styleIdx][1]; i++) {
+      this.image_list.push(
+        "url(/static/images/" +
+          this.item_list[styleIdx][0] +
+          "/" +
+          String(i) +
+          ".jpg)"
+      );
     }
   },
 

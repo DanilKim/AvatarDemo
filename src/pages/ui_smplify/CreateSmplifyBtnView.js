@@ -40,7 +40,7 @@ export default function CreateAvatarBtnView({ ...props }) {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>영상 업로드</DialogTitle>
         <DialogContent>
-          <Uploader/>
+          <Uploader closeFunc={handleClose}/>
           <DialogContentText>
             이미지로부터 얼굴 특징을 획득하여, 아바타를 생성합니다.
           </DialogContentText>

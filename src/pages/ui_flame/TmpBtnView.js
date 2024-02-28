@@ -33,7 +33,8 @@ export default function TmpBtnView({ ...props }) {
           flexDirection: "column",
         }}
         onClick={() => {
-          data_store.SetList();
+          data_store.SetList(0);
+          common_store.setStyleIdx(0);
           handleClickOpen();
         }}
       >
