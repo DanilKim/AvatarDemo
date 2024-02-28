@@ -130,15 +130,6 @@ const Uploader = ({ ...props }) => {
         const blob = new Blob([response.data]);
         const fileObjectUrl = window.URL.createObjectURL(blob);
         smplify_store.setObjPath(fileObjectUrl);
-        // const link = document.createElement("a");
-        // link.href = fileObjectUrl;
-        // link.style.display = "none";
-        // // link.download = response.headers['content-disposition'];
-        // link.download = "test_name.glb";
-        // document.body.appendChild(link);
-        // link.click();
-        // link.remove();
-        // window.URL.revokeObjectURL(fileObjectUrl);
       
         alert("생성이 완료되었습니다!");
         setImage({
@@ -148,6 +139,7 @@ const Uploader = ({ ...props }) => {
           preview_URL_2: default_img_path,
         });
         setLoading(false);
+        props.closeFunc();
       }
       catch (err)
       {

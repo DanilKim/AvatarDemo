@@ -9,7 +9,8 @@ export default function CreateWorld({ ...props }) {
     <Canvas>
       <OrbitControls />
       <ambientLight intensity={0.5} />
-      <directionalLight position={[-2, 5, 2]} intensity={1} />
+      <directionalLight position={[1, 5, -2]} intensity={1} />
+      <directionalLight position={[1, 5, 4]} intensity={1} />
       <Suspense fallback={null}>
         <AvatarTempGlb/>
       </Suspense>
