@@ -15,6 +15,7 @@ const data_store = observable({
   ],
   image_list: [],
   theme_list: [],
+  index_list: [],
 
   SetList() {
     for (let i = 0; i < this.item_list.length; i++) {
@@ -27,6 +28,7 @@ const data_store = observable({
       for (let j = 0; j < this.item_list[i][1]; j++) {
         this.theme_list.push(this.item_list[i][0]);
         this.image_list.push(tmpName);
+        this.index_list.push(this.item_list[i][1]);
       }
     }
   },
