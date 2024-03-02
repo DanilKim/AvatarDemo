@@ -21,13 +21,10 @@ const Uploader = ({ ...props }) => {
   const [image, setImage] = useState({
     image_file_1: "",
     preview_URL_1: default_img_path,
-    image_file_2: "",
-    preview_URL_2: default_img_path,
 
   });
 
   let inputRef_1;
-  let inputRef_2;
 
   const handleCloseLoading = () => {
     setLoading(false);
@@ -43,27 +40,7 @@ const Uploader = ({ ...props }) => {
       setImage(() => (
         {
           image_file_1: e.target.files[0],
-          preview_URL_1: preview_URL,
-          image_file_2: image.image_file_2,
-          preview_URL_2: image.preview_URL_2
-        }
-      ))
-    }
-  }
-
-  const saveImage_2 = (e) => {
-    e.preventDefault();
-    console.log("SaveImage2");
-    if(e.target.files[0]){
-      // 새로운 이미지를 올리면 createObjectURL()을 통해 생성한 기존 URL을 폐기
-      URL.revokeObjectURL(image.preview_URL);
-      const preview_URL = URL.createObjectURL(e.target.files[0]);  // 여기서 URL 이랑 file 이랑 연결시키는 역할을 하는듯
-      setImage(() => (
-        {
-          image_file_1: image.image_file_1,
-          preview_URL_1: image.preview_URL_1,
-          image_file_2: e.target.files[0],
-          preview_URL_2: preview_URL
+          preview_URL_1: preview_URL
         }
       ))
     }
@@ -75,8 +52,6 @@ const Uploader = ({ ...props }) => {
     setImage({
       image_file_1: "",
       preview_URL_1: default_img_path,
-      image_file_2: "",
-      preview_URL_2: default_img_path,
     });
   }
 
@@ -89,7 +64,7 @@ const Uploader = ({ ...props }) => {
 
   const sendImageToServer = async () => {
     // && 으로 체크하는 부분 바꿔야할수도 있음
-    if (image.image_file_1 && image.image_file_2) {
+    if (image.image_file_1) {
       setLoading(true);
 
       /*
@@ -97,12 +72,11 @@ const Uploader = ({ ...props }) => {
       */
       const formData = new FormData()
       formData.append('front_body', image.image_file_1);
-      formData.append('back_body', image.image_file_2);
       
       try {
         const response = await axios({
           method: "POST",
-          url:"http://222.122.67.140:52222/post",
+          url:"http://222.122.67.140:59555/post",
           headers: { "content-type": "multipart/form-data" },
           data: formData
         });
@@ -122,7 +96,7 @@ const Uploader = ({ ...props }) => {
       try {
         const response = await axios({
           method: "POST",
-          url:"http://222.122.67.140:52222/get_model",
+          url:"http://222.122.67.140:59555/get_model",
           headers: { "content-type": "multipart/form-data" },
           responseType: "blob"
         });
@@ -135,8 +109,6 @@ const Uploader = ({ ...props }) => {
         setImage({
           image_file_1: "",
           preview_URL_1: default_img_path,
-          image_file_2: "",
-          preview_URL_2: default_img_path,
         });
         setLoading(false);
         props.closeFunc();
@@ -163,26 +135,14 @@ const Uploader = ({ ...props }) => {
              style={{display: "none"}}
       />
       
-      <input type="file" accept="image/*"
-             onChange={saveImage_2}
-             // 클릭할 때 마다 file input의 value를 초기화 하지 않으면 버그가 발생할 수 있다
-             // 사진 등록을 두개 띄우고 첫번째에 사진을 올리고 지우고 두번째에 같은 사진을 올리면 그 값이 남아있음!
-             onClick={(e) => e.target.value = null}
-             ref={refParam => inputRef_2 = refParam}
-             style={{display: "none"}}
-      />
 
       <div className="img-wrapper">
         <img src={image.preview_URL_1}/>
-        <img src={image.preview_URL_2}/>
       </div>
 
       <div className="upload-button">
         <Button type="primary" variant="contained" onClick={() => inputRef_1.click()}>
-          Register Front Body
-        </Button>
-        <Button type="primary" variant="contained" onClick={() => inputRef_2.click()}>
-          Register Back Body
+          Register Front Image
         </Button>
         <Button color="error" variant="contained" onClick={deleteImage}>
           Delete

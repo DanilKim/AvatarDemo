@@ -16,7 +16,7 @@ import {
 
 import PropTypes from "prop-types";
 import CategoryButton from "../../components/old_create_avatar/CategoryButtonList";
-import CreateAvatarBtn from "./CreateSmplifyBtnView";
+import CreateAvatarBtn from "./CreateRealisticBtnView";
 
 export default function GenerativeFaceView({ ...props }) {
   //변수 설정
