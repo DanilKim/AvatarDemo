@@ -34,15 +34,15 @@ export default function CreateAvatarBtnView({ ...props }) {
       >
         <Add sx={{ color: "white", mt: 5 }} />
         <Typography variant="body1" sx={{ color: "white", mb: 5 }}>
-          전면, 후면 사진으로 아바타 만들기
+          전면 사진으로 아바타 만들기
         </Typography>
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>영상 업로드</DialogTitle>
+        <DialogTitle>사진 업로드</DialogTitle>
         <DialogContent>
           <Uploader closeFunc={handleClose}/>
           <DialogContentText>
-            이미지로부터 얼굴 특징을 획득하여, 아바타를 생성합니다.
+            학습된 모델로부터 2D 이미지에서 3D 특징을 생성하여, 아바타를 생성합니다.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

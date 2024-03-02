@@ -15,6 +15,7 @@ import GenerativeDECAFaceView from "./ui_flame/DECA/GenerativeDECAFaceView"
 import GenerativeFaceView from "./ui_flame/GenerativeFaceView";
 import GenerativeBodyView from "./ui_smpl/GenerativeBodyView";
 import SmplifyCreate from "./ui_smplify/GenerativeSmplifyView";
+import RealisticCreate from "./ui_realistic/GenerativeRealisticView";
 
 import { useState } from "react";
 
@@ -84,7 +85,7 @@ function App() {
           />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <SmplifyCreate
+          <RealisticCreate
             faceBlendShape={faceBlendShape}
             setFaceBlendShape={setFaceBlendShape}
             eyeSize={eyeSize}
