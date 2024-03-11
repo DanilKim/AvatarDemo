@@ -86,7 +86,7 @@ function App() {
           />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <GenerativeFaceView
+          <RealisticCreate
             faceBlendShape={faceBlendShape}
             setFaceBlendShape={setFaceBlendShape}
             eyeSize={eyeSize}
