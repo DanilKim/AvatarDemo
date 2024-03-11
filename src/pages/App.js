@@ -16,6 +16,7 @@ import GenerativeFaceView from "./ui_flame/GenerativeFaceView";
 import GenerativeBodyView from "./ui_smpl/GenerativeBodyView";
 import SmplifyCreate from "./ui_smplify/GenerativeSmplifyView";
 import EX_AvatarBodyAnimation from "../components/old_avatar_animation/EX_AvatarBodyAnimation";
+import RealisticCreate from "./ui_realistic/GenerativeRealisticView";
 
 import { useState } from "react";
 
