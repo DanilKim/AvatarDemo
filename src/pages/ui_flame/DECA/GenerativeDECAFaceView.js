@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import axios from "axios";
 import Box from "@mui/material/Box";
-import CreateWorld from "../../world_view/createworld";
+import DecaWorld from "../../world_view/DecaWorld";
 import {
   Typography,
   Button,
@@ -13,13 +13,11 @@ import {
 
 import UploadFaceImageCard from "./UploadFaceImageCard";
 import SelectStyleCard from "./SelectStyleCard";
-import SelectHairCard from "./SelectHairCard";
+import SelectHairCard from "./Hair/SelectHairCard";
 import SWSliderCard from "./SWSliderCard";
-import TmpBtnView from "../TmpBtnView";
 
 import { observer } from "mobx-react";
 import useStore from "../../../store/UseStore";
-
 
 export default observer(function GenerativeFaceView({ ...props }) {
   //변수 설정
@@ -46,17 +44,15 @@ export default observer(function GenerativeFaceView({ ...props }) {
         url: "http://222.122.67.140:11872/style_deca",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
-        responseType: "blob"
+        responseType: "blob",
       });
-      
+
       const model = new Blob([res.data]);
       deca_store.setModelURL(URL.createObjectURL(model));
       deca_store.setLoading(false);
-    }
-    catch (error)
-    {
-        console.log(error);
-        deca_store.setLoading(false);
+    } catch (error) {
+      console.log(error);
+      deca_store.setLoading(false);
     }
   };
 
@@ -102,16 +98,7 @@ export default observer(function GenerativeFaceView({ ...props }) {
         </CardContent>
       </Card>
       <Box sx={{ height: "100%", width: "66.5%" }}>
-        <CreateWorld
-          faceBlendShape={props.faceBlendShape}
-          setFaceBlendShape={props.setFaceBlendShape}
-          eyeSize={props.eyeSize}
-          setEyeSize={props.setEyeSize}
-          eyeShape={props.eyeShape}
-          setEyeShape={props.setEyeShape}
-          skin={props.skin}
-          setSkin={props.setSkin}
-        />
+        <DecaWorld />
       </Box>
 
       <Box

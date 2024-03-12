@@ -5,12 +5,13 @@ import Dialog from "@mui/material/Dialog";
 import Add from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
 import MuiInput from "@mui/material/Input";
-import LibraryDialog from "./StyleLibrary/LibraryView";
+import HairDialog from "./HairView";
 
 import { observer } from "mobx-react";
 import { useState, useEffect } from "react";
-import useStore from "../../../store/UseStore";
 import { styled } from "@mui/material/styles";
+
+import useStore from "../../../../store/UseStore";
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: "relative",
@@ -42,48 +43,40 @@ const Image = styled("span")(({ theme }) => ({
   color: theme.palette.common.white,
 }));
 
-const Input = styled(MuiInput)`
-  width: 40px;
-`;
-
-function SelectStyleCard({ ...props }) {
+function SelectHairCard({ ...props }) {
   const { common_store, deca_store, data_store } = useStore();
 
-  const [styPop, setStyPop] = useState(false);
+  const [hairPop, setHairPop] = useState(false);
 
   return (
     <Box sx={{ mt: 2, algnItems: "center", justifyContent: "center" }}>
       <ImageButton
         onClick={() => {
-          setStyPop(true);
-          data_store.SetList(0);
+          setHairPop(true);
         }}
       >
         <ImageSrc
           style={{
             backgroundImage:
-              'url("/static/images/' +
-              deca_store.style +
-              "/" +
-              deca_store.style_id +
-              '.jpg")',
+              'url("/static/hair_preview/' +
+              data_store.hair_list[deca_store.hair_id] +
+              '.png")',
           }}
         />
         <Image>
           <Add sx={{ color: "white", mt: 5 }} />
           <Typography variant="body1" sx={{ color: "white", mb: 5 }}>
-            스타일 사진 고르기
+            헤어 고르기
           </Typography>
         </Image>
       </ImageButton>
 
       <Dialog
         maxWidth="1080px"
-        open={styPop}
+        open={hairPop}
         onClose={() => {
-          common_store.changeAsset("");
-          common_store.setLibraryIdx(-1);
-          setStyPop(false);
+          common_store.setHairIdx(-1);
+          setHairPop(false);
         }}
         PaperProps={{
           sx: {
@@ -93,9 +86,9 @@ function SelectStyleCard({ ...props }) {
           },
         }}
       >
-        <LibraryDialog
+        <HairDialog
           onClose={() => {
-            setStyPop(false);
+            setHairPop(false);
           }}
         />
       </Dialog>
@@ -103,4 +96,4 @@ function SelectStyleCard({ ...props }) {
   );
 }
 
-export default observer(SelectStyleCard);
+export default observer(SelectHairCard);
