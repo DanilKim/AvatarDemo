@@ -9,7 +9,7 @@ import React, { useRef, useEffect, useState, useMemo } from "react";
 import useStore from "../../store/UseStore";
 import { observer } from "mobx-react";
 
-function Model({ ...props }) {
+function Smplify({ ...props }) {
   const { smplify_store } = useStore();
 
   const model = useLoader(GLTFLoader, smplify_store.obj_path).scene;
@@ -17,4 +17,4 @@ function Model({ ...props }) {
   return <primitive object={model}></primitive>;
 }
 
-export default observer(Model);
+export default observer(Smplify);
