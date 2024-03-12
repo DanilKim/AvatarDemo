@@ -8,11 +8,8 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import Add from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
-import Input from "@mui/material/Input";
-import RequestHttp from "../../components/RequestHttp";
 import CreateAvatarBtnViewModel from "./CreateSmplifyBtnViewModel";
-import Uploader from "./uploader"
+import Uploader from "./uploader";
 
 export default function CreateAvatarBtnView({ ...props }) {
   const { open, handleClickOpen, handleClose } = new CreateAvatarBtnViewModel();
@@ -40,7 +37,7 @@ export default function CreateAvatarBtnView({ ...props }) {
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>영상 업로드</DialogTitle>
         <DialogContent>
-          <Uploader closeFunc={handleClose}/>
+          <Uploader closeFunc={handleClose} />
           <DialogContentText>
             이미지로부터 얼굴 특징을 획득하여, 아바타를 생성합니다.
           </DialogContentText>

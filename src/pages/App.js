@@ -1,36 +1,13 @@
-import {
-  IconButton,
-  Box,
-  AppBar,
-  Toolbar,
-  Typography,
-  Tabs,
-  Tab,
-} from "@mui/material";
+import { Box, AppBar, Toolbar, Typography, Tabs, Tab } from "@mui/material";
 
 import * as React from "react";
 import TabPanel from "../components/TabPanelView";
-//import AvatarCreate from "./ui_flame/GenerativeFaceView";
 import GenerativeDECAFaceView from "./ui_flame/DECA/GenerativeDECAFaceView";
-import GenerativeFaceView from "./ui_flame/GenerativeFaceView";
-import GenerativeBodyView from "./ui_smpl/GenerativeBodyView";
 import SmplifyCreate from "./ui_smplify/GenerativeSmplifyView";
-import EX_AvatarBodyAnimation from "../components/old_avatar_animation/EX_AvatarBodyAnimation";
 import RealisticCreate from "./ui_realistic/GenerativeRealisticView";
-
-import { useState } from "react";
 
 function App() {
   const [value, setValue] = React.useState(0);
-
-  //const [faceBlendShape, setFaceBlendShape] = React.useState([new Object()]);
-  const [bodyAnimation, setBodyAnimation] = React.useState([new Object()]);
-
-  const [faceBlendShape, setFaceBlendShape] = useState(0);
-  const [eyeSize, setEyeSize] = useState(0);
-  const [eyeShape, setEyeShape] = useState(0);
-  const [skin, setSkin] = useState(0);
-  //const [faceAnimData, setFaceAnimData] = useState();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -54,67 +31,24 @@ function App() {
             sx={{ flexGrow: 1 }}
           >
             <Tab label="Animated Face" index="0" />
-            <Tab label="Animated Body" index="1" />
-            <Tab label="Realistic Avatar" index="2" />
-            <Tab label="Smplify" index="3" />
-            <Tab label="Animation" index="4" />
+            <Tab label="Realistic Avatar" index="1" />
+            <Tab label="Smplify" index="2" />
+            <Tab label="Animation" index="3" />
           </Tabs>
         </Toolbar>
       </AppBar>
       <Box sx={{ height: "100%", pt: "4.5vh" }}>
         <TabPanel value={value} index={0}>
-          <GenerativeDECAFaceView
-            faceBlendShape={faceBlendShape}
-            setFaceBlendShape={setFaceBlendShape}
-            eyeSize={eyeSize}
-            setEyeSize={setEyeSize}
-            eyeShape={eyeShape}
-            setEyeShape={setEyeShape}
-            skin={skin}
-            setSkin={setSkin}
-          />
+          <GenerativeDECAFaceView />
         </TabPanel>
         <TabPanel value={value} index={1}>
-          <GenerativeBodyView
-            faceBlendShape={faceBlendShape}
-            setFaceBlendShape={setFaceBlendShape}
-            eyeSize={eyeSize}
-            setEyeSize={setEyeSize}
-            eyeShape={eyeShape}
-            setEyeShape={setEyeShape}
-            skin={skin}
-            setSkin={setSkin}
-          />
+          <RealisticCreate />
         </TabPanel>
         <TabPanel value={value} index={2}>
-          <RealisticCreate
-            faceBlendShape={faceBlendShape}
-            setFaceBlendShape={setFaceBlendShape}
-            eyeSize={eyeSize}
-            setEyeSize={setEyeSize}
-            eyeShape={eyeShape}
-            setEyeShape={setEyeShape}
-            skin={skin}
-            setSkin={setSkin}
-          />
+          <SmplifyCreate />
         </TabPanel>
         <TabPanel value={value} index={3}>
-          <SmplifyCreate
-            faceBlendShape={faceBlendShape}
-            setFaceBlendShape={setFaceBlendShape}
-            eyeSize={eyeSize}
-            setEyeSize={setEyeSize}
-            eyeShape={eyeShape}
-            setEyeShape={setEyeShape}
-            skin={skin}
-            setSkin={setSkin}
-          />
-        </TabPanel>
-        <TabPanel value={value} index={4}>
-          <EX_AvatarBodyAnimation
-            bodyAnimation={bodyAnimation}
-            setBodyAnimation={setBodyAnimation}
-          />
+          <SmplifyCreate />
         </TabPanel>
       </Box>
     </Box>

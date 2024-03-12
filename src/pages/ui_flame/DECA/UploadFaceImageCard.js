@@ -7,18 +7,13 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
-import Slider from "@mui/material/Slider";
 import Add from "@mui/icons-material/Add";
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
-import axios from "axios";
 import MuiInput from "@mui/material/Input";
-import RequestHttp from "../../../components/RequestHttp";
 import useStore from "../../../store/UseStore";
 
 import { observer } from "mobx-react";
 import { useState, useEffect } from "react";
-import { useStores } from "../../../store/Context";
 import { styled } from "@mui/material/styles";
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
@@ -62,9 +57,7 @@ function UploadFaceImageCard({ ...props }) {
   const [imgPop, setImgPop] = useState(false);
 
   const [imageSrc, setImageSrc] = useState(null);
-  const [styleSrc, setStyleSrc] = useState(null);
   const initInputImg = "/input/images/face.jpg";
-  const initStyleImg = "/static/images/face/Custom_FaceTemplate_00.png";
 
   return (
     <Box>
