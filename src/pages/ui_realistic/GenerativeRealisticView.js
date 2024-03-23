@@ -1,16 +1,28 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import CreateWorldCustom from "../world_view/SmplifyWorld";
-import { Card } from "@mui/material";
-import CreateAvatarBtn from "./CreateRealisticBtnView";
+import AnimationWorld from "../world_view/EX_animationworld";
+import { Card, Button, Typography } from "@mui/material";
+import { useState } from "react";
+import useStore from "../../store/UseStore";
+import { common_store } from "../../store/Common_Store";
 
-export default function GenerativeFaceView({ ...props }) {
+export default function GenerativeAnimationView({ ...props }) {
   //변수 설정
-  const [value, setValue] = React.useState(0);
+  const [animationAction, setAnimationAction] = useState(null);
 
+  const playAnimation = () => {
+    animationAction?.reset().play();
+  };
+
+  const stopAnimation = () => {
+    animationAction?.stop();
+  };
+
+  const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <Box sx={{ height: "94vh", display: "flex" }}>
       <Card
@@ -23,10 +35,43 @@ export default function GenerativeFaceView({ ...props }) {
           borderRadius: 5,
         }}
       >
-        <CreateAvatarBtn />
+        <Button
+          color="inherit"
+          sx={{
+            width: 1,
+            height: 1 / 8,
+            mt: 3,
+            bgcolor: "#22aa22",
+            borderRadius: 5,
+            display: "flex",
+            flexDirection: "column",
+          }}
+          onClick={playAnimation}
+        >
+          <Typography variant="body1" sx={{ color: "black" }}>
+            애니메이션 재생
+          </Typography>
+        </Button>
+        <Button
+          color="inherit"
+          sx={{
+            width: 1,
+            height: 1 / 8,
+            mt: 3,
+            bgcolor: "#aaaa22",
+            borderRadius: 5,
+            display: "flex",
+            flexDirection: "column",
+          }}
+          onClick={stopAnimation}
+        >
+          <Typography variant="body1" sx={{ color: "black" }}>
+            애니메이션 멈춤
+          </Typography>
+        </Button>
       </Card>
       <Box sx={{ height: "100%", width: "60%" }}>
-        <CreateWorldCustom />
+        <AnimationWorld setAnimationAction={setAnimationAction} />
       </Box>
 
       <Box
