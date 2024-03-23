@@ -1,9 +1,8 @@
 import * as React from "react";
 import { useState } from "react";
 import axios from "axios";
-import Box from "@mui/material/Box";
-import DecaWorld from "../../world_view/DecaWorld";
 import {
+  Box,
   Typography,
   Button,
   Card,
@@ -11,10 +10,12 @@ import {
   CardContent,
 } from "@mui/material";
 
+import DecaWorld from "../../world_view/DecaWorld";
 import UploadFaceImageCard from "./UploadFaceImageCard";
 import SelectStyleCard from "./SelectStyleCard";
 import SelectHairCard from "./Hair/SelectHairCard";
 import SWSliderCard from "./SWSliderCard";
+import Sidebar from "./Sidebar";
 
 import { observer } from "mobx-react";
 import useStore from "../../../store/UseStore";
@@ -97,15 +98,17 @@ export default observer(function GenerativeFaceView({ ...props }) {
           </Button>
         </CardContent>
       </Card>
-      <Box sx={{ height: "100%", width: "66.5%" }}>
+      <Box sx={{ height: "100%", width: "63.5%" }}>
         <DecaWorld />
       </Box>
 
       <Box
         direction="row"
         justifySelf="flex-end"
-        sx={{ width: "15vw", bgcolor: "#fafafa", p: 3 }}
-      ></Box>
+        sx={{ width: "18vw", bgcolor: "#fafafa", p: 3 }}
+      >
+        <Sidebar/>
+      </Box>
     </Box>
   );
 });

@@ -17,7 +17,7 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: "relative",
   height: 150,
   width: 150,
-  left: 50,
+  left: 0,
 }));
 
 const ImageSrc = styled("span")({
