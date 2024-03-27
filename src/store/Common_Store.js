@@ -4,7 +4,8 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import * as THREE from "three";
 
 const common_store = observable({
-  obj_path: "/static/models/talking_head_animation.glb",
+  obj_path: "/static/models/file.glb",
+  //obj_path: "/static/models/talking_head_animation.glb",
   setObj(path) {
     this.obj_path = path;
   },
