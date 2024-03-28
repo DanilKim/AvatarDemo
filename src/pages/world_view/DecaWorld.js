@@ -50,8 +50,8 @@ function DecaWorld({ ...props }) {
       >
         <OrbitControls makeDefault attach="orbitControls"/>
         <ambientLight intensity={0.5} />
-        <directionalLight position={[0, 1, 3]} intensity={2} />
-        <directionalLight position={[0, 1, -3]} intensity={2} />
+        <directionalLight position={[0, 1, 3]} intensity={4} />
+        <directionalLight position={[0, 1, -3]} intensity={3} />
         <Suspense fallback={null}>
           {deca_store.model_url != null && (
             <DECA 
