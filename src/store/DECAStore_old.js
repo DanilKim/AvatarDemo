@@ -10,16 +10,16 @@ class InstanceInfo {
   rotation;
   scale;
   modelUrl;
-  audio;
+  audioUrl;
 
-  constructor(id, name, position, rotation, scale, modelUrl = '', audio = {file: null, url: '', name: ''}) {
+  constructor(id, name, position, rotation, scale, modelUrl = '', audioUrl = '') {
       this.id = id;
       this.name = name;
       this.position = position;
       this.rotation = rotation;
       this.scale = scale;
       this.modelUrl = modelUrl;
-      this.audio = audio;
+      this.audioUrl = audioUrl;
   }
 }
 
@@ -43,8 +43,6 @@ const deca_store = observable({
   hair_id: 1,
   sw: 40,
   model_url: null,
-  audio: {file: null, url: '', name: ''},
-  anim: {action: null, url: ''},
   loading: false,
 
   selected: false,
@@ -77,12 +75,10 @@ const deca_store = observable({
     this.model_url = url;
   },
 
-  setAudio(audio) {
-    //if (this.selected) {
-    this.audio.file = audio.file;
-    this.audio.url = audio.url;
-    this.audio.name = audio.name;
-    //}
+  setAudioURL(url) {
+    if (this.selected) {
+      this.selected_item.audioUrl = url;
+    }
   },
 
   setLoading(load) {
@@ -90,14 +86,14 @@ const deca_store = observable({
   },
 
 
-  select(id, name, position, rotation, scale, modelUrl='', audio = {file: null, url: '', name: ''}) {
+  select(id, name, position, rotation, scale, modelUrl='', audioUrl='') {
     this.selected = true;
-    //this.selected_item = new InstanceInfo(id, name, position, rotation, scale, modelUrl, audio);
+    this.selected_item = new InstanceInfo(id, name, position, rotation, scale, modelUrl, audioUrl);
   },
 
   unselect() {
     this.selected = false;
-    //this.selected_item = null;
+    this.selected_item = null;
   },
 
 
@@ -107,20 +103,7 @@ const deca_store = observable({
 
   update3D(position, rotation, scale) {
     this.transform = new Transform(position, rotation, scale);
-  },
-
-  anim_on(action) {
-    this.anim.action = action;
-  },
-
-  anim_off() {
-    this.anim.action = null;
-  },
-
-  setAnimUrl(url) {
-    this.anim.url = url;
   }
-
 
 });
 

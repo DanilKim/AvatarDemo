@@ -19,6 +19,7 @@ import useStore from "../../../store/UseStore";
 import { Vector3 } from "three";
 
 import UploadAudio from "./UploadAudio";
+import AnimationPlay from "./AnimationPlay";
 
 const actions = ['rotation', 'hover', 'alien atack'];
 
@@ -28,7 +29,8 @@ export default observer((props) => {
 
     let item;
     if (deca_store.selected) {
-        item = deca_store.scene.getObjectByName(deca_store.selected_item.name, true);
+        //item = deca_store.scene.getObjectByName(deca_store.selected_item.name, true);
+        item = deca_store.scene.getObjectByName("my_deca", true);
     }
 
 
@@ -92,11 +94,11 @@ export default observer((props) => {
                                 <TableBody>
                                     <TableRow>
                                         <TableCell align="center" sx={{ width: 30 }}>ID</TableCell>
-                                        <TableCell align="right" >{deca_store.selected_item.id}</TableCell>
+                                        <TableCell align="right" >{0}</TableCell>
                                     </TableRow>
                                     <TableRow>
                                         <TableCell align="center">name</TableCell>
-                                        <TableCell align="right" >{deca_store.selected_item.name}</TableCell>
+                                        <TableCell align="right" >{"my_deca"}</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
@@ -192,19 +194,18 @@ export default observer((props) => {
                     </Card>
                     {/* <TextField id="outlined-basic" label="Distance" variant="outlined" onChange={handleChange}></TextField> */}
                     <br />
-
-
-
-
                 </CardContent>
             }
-            {deca_store.selected && <UploadAudio/>}
+            {deca_store.model_url && <UploadAudio />}
+            {deca_store.anim.url !== '' && <AnimationPlay action={deca_store.anim.action}/>}
         </Card>
     </>
     );
 
 
 })
+
+//{deca_store.selected && <UploadAudio item={item}/>}
 
 /*
 <form onSubmit={handleSubmitDistance}>

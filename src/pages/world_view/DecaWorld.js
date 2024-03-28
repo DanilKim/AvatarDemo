@@ -35,17 +35,13 @@ const Transformable = () => {
   })
 
   return (
-      <TransformControls mode={mode} object={deca_store.selected && scene.getObjectByName(deca_store.selected_item.name, true)} />
+      <TransformControls mode={mode} object={deca_store.selected && scene.getObjectByName("my_deca", true)} />
   )
 }
 
 
 function DecaWorld({ ...props }) {
   const { deca_store } = useStore();
-
-  // useEffect(() => {
-  //   console.log(deca_store);
-  // });
 
   return (
     <>

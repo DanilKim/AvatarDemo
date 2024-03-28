@@ -7,6 +7,7 @@ import GenerativeDECAFaceView from "./ui_flame/DECA/GenerativeDECAFaceView";
 import SmplifyCreate from "./ui_smplify/GenerativeSmplifyView";
 import GenerativeEMOTEFaceView from "./ui_flame/EMOTE/GenerativeEMOTEFaceView";
 
+
 function App() {
   const [value, setValue] = React.useState(0);
 

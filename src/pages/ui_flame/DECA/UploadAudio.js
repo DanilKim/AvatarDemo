@@ -66,18 +66,13 @@ const AudioPlayer = (props) => {
 
 
 
-const AudioUploader = () => {
+const AudioUploader = (props) => {
   const { deca_store } = useStore();
-  const [audio, setAudio] = useState( {
-    file: null,
-    url: '', //'/static/audios/obama_test_audio.wav',
-    name: '', //'obama_test_audio'
-  });
-  
-  // const [audioFiles] = useState(initialAudioFiles);
-  // const [currentAudioIndex, setCurrentAudioIndex] = useState(
-  //   parseInt(localStorage.getItem('currentAudioIndex')) || 0
-  // );
+  // const [audio, setAudio] = useState( {
+  //   file: item.audio.file,
+  //   url: item.audio.url,  //'/static/audios/obama_test_audio.wav',
+  //   name: item.audio.name, //'obama_test_audio'
+  // });
 
   // Post request for uploading audio in cloudinary
   const handleSubmit = async (e) => {
@@ -85,23 +80,20 @@ const AudioUploader = () => {
     deca_store.setLoading(true);
 
     //deca_store.setAudioURL(URL.createObjectURL(audioUpload))
-    if (audio.url === '') return;
+    if (deca_store.audio.url === '') return;
     var data = new FormData();
-    data.append("files", audio.file);
+    data.append("audio", deca_store.audio.file);
 
-    var model = await fetch(deca_store.selected_item.modelUrl);
+    var model = await fetch(deca_store.model_url);
     var model_blob = await model.blob();
-    var model_name = deca_store.selected_item.name;
-    var model_file = new File([model_blob], model_name );
-    data.append("files", model_file);
-
-    // console.log(audio.file);
-    // console.log(audio.file);
-    // console.log(deca_store.selected_item);
-    // console.log(model_blob);
-    // console.log(deca_store.selected_item.modelUrl);
-    // console.log(model_file);
-    console.log(data);
+    console.log(model_blob);
+    var model_name = "my_deca" //item.name;
+    var model_file = new File([model_blob], model_name + '.glb' );
+    data.append("face", model_file);
+ 
+    for (var value of data.values()) {
+        console.log(value);
+      }
 
     model = null;
     model_blob = null;
@@ -111,16 +103,15 @@ const AudioUploader = () => {
     try {
       const res = await axios({
         method: "post",
-        url: "http://222.122.67.140:11872/emote",
+        url: "http://222.122.67.140:11885/deca_with_emote",
         data: data,
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",
       });
       
       const model = new Blob([res.data]);
-      console.log(model);
       data = null;
-      //deca_store.setModelURL(URL.createObjectURL(model));
+      deca_store.setAnimUrl(URL.createObjectURL(model));
       deca_store.setLoading(false);
     } catch (error) {
       console.log(error);
@@ -138,19 +129,24 @@ const AudioUploader = () => {
           type='file' 
           accept="audio/*"
           onChange={(e) => {
-            setAudio({
+            deca_store.setAudio({
                 file: e.target.files[0],
                 url: URL.createObjectURL(e.target.files[0]),
                 name: e.target.files[0].name 
             });
-
+            // item.audio = {
+            //   file: e.target.files[0],
+            //   url: URL.createObjectURL(e.target.files[0]),
+            //   name: e.target.files[0].name 
+            // }
+            // setAudio(item.audio);
           }}
         />
       </Button>
-      {audio.url !== '' &&
+      {deca_store.audio.url !== '' &&
         <AudioPlayer
-            audioUrl={audio.url}
-            audioName={audio.name}
+            audioUrl={deca_store.audio.url}
+            audioName={deca_store.audio.name}
         />
       }
       
