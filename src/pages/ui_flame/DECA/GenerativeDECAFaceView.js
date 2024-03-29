@@ -51,6 +51,7 @@ export default observer(function GenerativeFaceView({ ...props }) {
       const model = new Blob([res.data]);
       console.log(model);
       deca_store.setModelURL(URL.createObjectURL(model));
+      deca_store.flushAnim();
       deca_store.setLoading(false);
     } catch (error) {
       console.log(error);

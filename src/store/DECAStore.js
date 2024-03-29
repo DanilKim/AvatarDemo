@@ -119,6 +119,10 @@ const deca_store = observable({
 
   setAnimUrl(url) {
     this.anim.url = url;
+  },
+
+  flushAnim() {
+    this.anim = {action: null, url: ''};
   }
 
 
