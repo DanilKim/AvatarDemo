@@ -85,10 +85,6 @@ const deca_store = observable({
     //}
   },
 
-  setText(text) {
-    this.text = text;
-  },
-
   setLoading(load) {
     this.loading = load;
   },
