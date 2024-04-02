@@ -1,6 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
-import RealWorld from "../world_view/RealWorld";
+import RealWorld from "../world_view/realworld";
 import { Card, Button, Typography } from "@mui/material";
 import { useState } from "react";
 import useStore from "../../store/UseStore";

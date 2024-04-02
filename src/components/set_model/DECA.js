@@ -17,11 +17,11 @@ function AnimHead(props) {
 
     // const { nodes } = useGLTF(props.url);
     const nodes = useLoader(GLTFLoader, props.url);
-    
+    console.log(nodes);
     useEffect(() => {
       const head = nodes.scene.getObjectByName("talking_head");
       head.rotation.setFromVector3(new Vector3(Math.PI/2, 0, Math.PI));
-      
+
       if (nodes.animations.length) {
         headRef.current = new THREE.AnimationMixer(nodes.scene);
         const action = headRef.current.clipAction(nodes.animations[0]);
@@ -163,11 +163,9 @@ function DECA(props) {
             {deca_store.anim.url !== '' ?
                 <AnimHead url={deca_store.anim.url}/>
                 : 
-                <>
-                {hair}
                 <Head value={nodes.output_beforeobj}/>
-                </>
             }
+            {hair}
             
         </group>
     );
