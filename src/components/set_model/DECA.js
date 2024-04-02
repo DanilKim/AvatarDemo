@@ -163,11 +163,9 @@ function DECA(props) {
             {deca_store.anim.url !== '' ?
                 <AnimHead url={deca_store.anim.url}/>
                 : 
-                <>
-                {hair}
                 <Head value={nodes.output_beforeobj}/>
-                </>
             }
+            {hair}
             
         </group>
     );
