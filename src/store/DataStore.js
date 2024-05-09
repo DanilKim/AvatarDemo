@@ -37,6 +37,13 @@ const data_store = observable({
     'mesh_00427',    'mesh_00429',    'mesh_00512'
   ],
 
+  mint_hair_list : [ 'No_Hair',
+    'Hair_Male_001',   'Hair_Male_002',   'Hair_Male_003',   
+    'Hair_Male_004',   'Hair_Male_005',   'Hair_Male_006',   
+    'Hair_Female_001',   'Hair_Female_002',   'Hair_Female_003',   
+    'Hair_Female_004',   'Hair_Female_005',   'Hair_Female_006',   
+  ]
+
 
 });
 

@@ -30,7 +30,7 @@ const HairLibraryList = observer((props) => {
         }}
         style={{ display: "flex", justifyContent: "flex-start" }}
       >
-        {Array.from(data_store.hair_list).map((name, index) => (
+        {Array.from(data_store.mint_hair_list).map((name, index) => (
           <Box
             key={"hair_" + name}
             sx={{
@@ -53,7 +53,7 @@ const HairLibraryList = observer((props) => {
                 alignItems: "center",
                 justifyContent: "center",
                 backgroundColor: "#393939",
-                backgroundImage: "url(/static/hair_preview/" + name + ".png)",
+                backgroundImage: "url(/static/mint_hair_preview/" + name + ".png)",
                 backgroundSize: "100% 100%",
                 backgroundRepeat: "no-repeat",
                 border: 1,

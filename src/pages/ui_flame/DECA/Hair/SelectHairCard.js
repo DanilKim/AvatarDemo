@@ -58,8 +58,8 @@ function SelectHairCard({ ...props }) {
         <ImageSrc
           style={{
             backgroundImage:
-              'url("/static/hair_preview/' +
-              data_store.hair_list[deca_store.hair_id] +
+              'url("/static/mint_hair_preview/' +
+              data_store.mint_hair_list[deca_store.hair_id] +
               '.png")',
           }}
         />
