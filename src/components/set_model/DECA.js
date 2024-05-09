@@ -1,14 +1,50 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { useGLTF } from '@react-three/drei'; 
+import { useGLTF, useFBX, useTexture } from '@react-three/drei'; 
 
 import useStore from "../../store/UseStore";
 import { observer } from 'mobx-react';
 import * as THREE from "three";
 import { Vector3 } from "three";
+import * as BufferGeometryUtils from "three/examples/jsm/utils/BufferGeometryUtils.js";
 
 import { useLoader } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+
+const fragmentShader = `
+varying vec2 vUv;
+uniform float opacity;
+
+#ifdef USE_MAP
+    uniform sampler2D map;
+#endif
+
+
+void main() {
+    vec3 color = vec3(1.0,0.0,0.0) * opacity;
+    #ifdef USE_MAP
+        vec4 mapTexel = texture2D( map, vUv.xy );
+        gl_FragColor = mapTexel;
+    #endif
+gl_FragColor = vec4(blue*phong(), 1.0);
+}`
+
+const vertexShader = `
+varying vec2 vUv;
+
+void main() {
+vUv = uv;
+vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+gl_Position = projectionMatrix * mvPosition;
+}
+`
+
+const new_hair_list = [
+    'Hair_Male_001',   'Hair_Male_002',   'Hair_Male_003',   
+    'Hair_Male_004',   'Hair_Male_005',   'Hair_Male_006',   
+    'Hair_Female_001',   'Hair_Female_002',   'Hair_Female_003',   
+    'Hair_Female_004',   'Hair_Female_005',   'Hair_Female_006',   
+]
 
 
 function AnimHead(props) {
@@ -41,21 +77,28 @@ function AnimHead(props) {
 
 
 function Head({value}) {
+    //value.geometry.deleteAttribute('normal')
+    //value.geometry = BufferGeometryUtils.mergeVertices(value.geometry);
+    //value.geometry.computeVertexNormals();
+    //value.material.roughness = 0.8;
+    console.log(value);
     return <mesh
         key={"head"}
         geometry={value.geometry}
         material={value.material}
         rotation={[
             value.rotation.x,
-            value.rotation.y - Math.PI,
-            value.rotation.z
+            value.rotation.y + Math.PI,
+            value.rotation.z 
         ]}
         position={value.position}
         scale={value.scale}
     />;  
 }
 
+
 function Hair({value}) {
+    //value.material.roughness = 0.7;
     return <mesh
         key={"hair"}
         geometry={value.geometry}
@@ -67,8 +110,29 @@ function Hair({value}) {
 }
 
 
+function MintHairGLB(props) {
+    //const { deca_store } = useStore();
+    //console.log(deca_store.hair_id-1);
+    //const { nodes, materials } = useGLTF('/static/mint_hair/glb/'+new_hair_list[deca_store.hair_id-1]+'.glb');
+    const { nodes, materials } = useGLTF('/static/mint_hair/glb/'+new_hair_list[props.id-1]+'.glb');
+    const value = nodes[new_hair_list[props.id-1]];
+    console.log(value.position);
+    console.log(materials);
+
+    materials.Hair.color.r = 0.05;
+    materials.Hair.color.g = 0.015;
+    materials.Hair.color.b = 0.005;
+  
+    return <mesh>
+      <primitive 
+        object={value}
+      />
+    </mesh>  
+}
+
 function DECA(props) {
     const [animationAction, setAnimationAction] = useState(null);
+
     const { deca_store } = useStore();
     const decaRef = useRef();
 
@@ -92,7 +156,7 @@ function DECA(props) {
         // SidebarStore.setcampos(assetRef.current.position.x, assetRef.current.position.y, assetRef.current.position.z)
     }
 
-    console.log(nodes);    
+    console.log(nodes);
 
     useFrame( (_, delta) => {
         if (deca_store.selected) {
@@ -106,29 +170,19 @@ function DECA(props) {
 
 
     const hair = [];
-    for (const [key, value] of Object.entries(nodes)) {
-        if (key.startsWith('mesh_')) {
-            hair.push(
-                <Hair value={value}/>
-            )
-        }
-        // if (key === 'output_beforeobj' && deca_store.anim.url) {
-        //     if (deca_store.anim.url) {
-        //         meshList.push(
-        //             <AnimHead url={deca_store.anim.url}/>
-        //         )
-        //     } else {
-        //         meshList.push(
-        //             <Head value={value}/>
-        //         )
-        //     }
-        // } else {
-        //     meshList.push(
-        //         <Hair value={value}/>
-        //     )
-        // }
+    //for (const [key, value] of Object.entries(nodes)) {
+    //    if (key.startsWith('mesh_')) {
+    //        hair.push(
+    //            <Hair value={value}/>
+    //        )
+    //    }
+    //}
+    if (deca_store.hair_id !== 0) {
+        hair.push(
+            <MintHairGLB id={deca_store.hair_id}/>
+        )
     }
-    
+    console.log(decaRef.current);
 
     return (
         <group
@@ -173,23 +227,7 @@ function DECA(props) {
 }
 
 export default observer(DECA);
-
-// {deca_store.anim.url !== '' ?
-//     <AnimHead url={deca_store.anim.url}/>
-//     :
-//     <Head value={nodes.output_beforeobj}/>
-// }
-
-// const meshList = Object.entries(nodes).map(([key,value]) => (
-//     value.type === 'Mesh' ?
-//     <mesh
-//         ref={value.name === 'outputobj'? headRef: null}
-//         key={value.name}
-//         geometry={value.geometry}
-//         material={value.material}
-//         rotation={value.rotation}
-//         position={value.position}
-//         scale={value.scale}
-//     />
-//     :
-//     <primitive object={value}/>))
+//<MintHairGLB/>
+//{deca_store.hair_id !== 0 &&
+//    <MintHairGLB id={deca_store.hair_id}/>
+//}
