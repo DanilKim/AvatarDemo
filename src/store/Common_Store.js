@@ -44,6 +44,7 @@ const common_store = observable({
   styleIdx: -1,
   libraryIdx: -1,
   hairIdx: -1,
+  hairColorIdx: -1,
 
   setStyle(sty) {
     this.style = sty;
@@ -59,6 +60,10 @@ const common_store = observable({
 
   setHairIdx(idx) {
     this.hairIdx = idx;
+  },
+
+  setHairColorIdx(idx) {
+    this.hairColorIdx = idx;
   },
 
   curAsset: "",

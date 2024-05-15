@@ -19,7 +19,7 @@ const LibraryList = observer((props) => {
         }}
         style={{ display: "flex", justifyContent: "flex-start" }}
       >
-        {Array.from(data_store.image_list).map((object, index) => (
+        {Array.from(data_store.style_images).map((object, index) => (
           <Box
             key={props.type + "_" + index}
             sx={{

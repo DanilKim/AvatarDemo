@@ -11,7 +11,7 @@ export default function LibraryViewModel(props) {
   let tmpNum = 0;
   let tmpName = "";
 
-  const itemList = data_store.item_list;
+  const itemList = data_store.style_list;
 
   for (let i = 0; i < itemList.length; i++) {
     tmpType = itemList[i][0];

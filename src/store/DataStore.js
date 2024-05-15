@@ -1,7 +1,7 @@
 import { observable } from "mobx";
 
 const data_store = observable({
-  item_list: [
+  style_list: [
     ["anime", 174],
     ["arcane", 100],
     ["caricature", 199],
@@ -14,15 +14,15 @@ const data_store = observable({
     ["slamdunk", 120],
   ],
 
-  image_list: [],
+  style_images: [],
 
   SetList(styleIdx) {
-    this.image_list = [];
+    this.style_images = [];
 
-    for (let i = 0; i < this.item_list[styleIdx][1]; i++) {
-      this.image_list.push(
+    for (let i = 0; i < this.style_list[styleIdx][1]; i++) {
+      this.style_images.push(
         "url(/static/images/" +
-          this.item_list[styleIdx][0] +
+          this.style_list[styleIdx][0] +
           "/" +
           String(i) +
           ".jpg)"
@@ -42,6 +42,11 @@ const data_store = observable({
     'Hair_Male_004',   'Hair_Male_005',   'Hair_Male_006',   
     'Hair_Female_001',   'Hair_Female_002',   'Hair_Female_003',   
     'Hair_Female_004',   'Hair_Female_005',   'Hair_Female_006',   
+  ],
+
+  hair_color_list : [
+    'black', 'brown', 'red', 'blue',
+    'green', 'purple', 'yellow', 'sky'
   ]
 
 

@@ -46,6 +46,11 @@ const new_hair_list = [
     'Hair_Female_004',   'Hair_Female_005',   'Hair_Female_006',   
 ]
 
+const hair_color_list = [
+    'black', 'brown', 'red', 'blue',
+    'green', 'purple', 'yellow', 'sky'
+]
+
 
 function AnimHead(props) {
     const { deca_store } = useStore();
@@ -114,14 +119,15 @@ function MintHairGLB(props) {
     //const { deca_store } = useStore();
     //console.log(deca_store.hair_id-1);
     //const { nodes, materials } = useGLTF('/static/mint_hair/glb/'+new_hair_list[deca_store.hair_id-1]+'.glb');
-    const { nodes, materials } = useGLTF('/static/mint_hair/glb/'+new_hair_list[props.id-1]+'.glb');
-    const value = nodes[new_hair_list[props.id-1]];
+    const { nodes, materials } = useGLTF(
+        '/static/mint_hair/glb/'+ 
+        new_hair_list[props.hair_id-1]+'/'+
+        new_hair_list[props.hair_id-1]+'_textured_'+
+        hair_color_list[props.color_id]+'.glb'
+    );
+    const value = nodes[new_hair_list[props.hair_id-1]];
     console.log(value.position);
     console.log(materials);
-
-    materials.Hair.color.r = 0.05;
-    materials.Hair.color.g = 0.015;
-    materials.Hair.color.b = 0.005;
   
     return <mesh>
       <primitive 
@@ -179,7 +185,10 @@ function DECA(props) {
     //}
     if (deca_store.hair_id !== 0) {
         hair.push(
-            <MintHairGLB id={deca_store.hair_id}/>
+            <MintHairGLB 
+                hair_id={deca_store.hair_id} 
+                color_id={deca_store.hair_color_id}
+            />
         )
     }
     console.log(decaRef.current);

@@ -21,7 +21,7 @@ const LibraryPanel = observer((props) => {
       hidden={value !== index}
       {...other}
     >
-      {Array.from(data_store.item_list).map(
+      {Array.from(data_store.style_list).map(
         (object, index) => value === index && <LibraryList type={object} />
       )}
     </Box>

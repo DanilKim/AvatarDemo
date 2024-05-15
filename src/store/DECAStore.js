@@ -41,6 +41,7 @@ const deca_store = observable({
   style: "pixar",
   style_id: 0,
   hair_id: 1,
+  hair_color_id: 0,
   sw: 40,
   model_url: null,
   audio: {file: null, url: '', name: ''},
@@ -67,6 +68,10 @@ const deca_store = observable({
 
   setHairId(hair_id) {
     this.hair_id = hair_id;
+  },
+
+  setHairColorId(hair_color_id) {
+    this.hair_color_id = hair_color_id;
   },
 
   setSw(sw) {

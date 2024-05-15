@@ -17,7 +17,7 @@ const theme = createTheme({
 const LibraryDialog = observer((props) => {
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
-    common_store.setStyle(data_store.item_list[newValue][0]);
+    common_store.setStyle(data_store.style_list[newValue][0]);
     common_store.setStyleIdx(newValue);
     common_store.setLibraryIdx(-1);
     data_store.SetList(newValue);
@@ -85,7 +85,7 @@ const LibraryDialog = observer((props) => {
               value={value}
               onChange={handleChange}
             >
-              {Array.from(data_store.item_list).map((object, index) => (
+              {Array.from(data_store.style_list).map((object, index) => (
                 <Tab
                   key={index}
                   sx={{
@@ -99,7 +99,7 @@ const LibraryDialog = observer((props) => {
           </ThemeProvider>
         </Box>
         <Box>
-          {Array.from(data_store.item_list).map((object, index) => (
+          {Array.from(data_store.style_list).map((object, index) => (
             <LibraryPanel key={index} value={value} index={index} />
           ))}
         </Box>
