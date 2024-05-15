@@ -93,7 +93,7 @@ function Head({value}) {
         material={value.material}
         rotation={[
             value.rotation.x,
-            value.rotation.y + Math.PI,
+            value.rotation.y, //+ Math.PI,
             value.rotation.z 
         ]}
         position={value.position}
