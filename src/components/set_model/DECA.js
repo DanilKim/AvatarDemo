@@ -116,15 +116,12 @@ function Hair({value}) {
 
 
 function MintHairGLB(props) {
-    //const { deca_store } = useStore();
-    //console.log(deca_store.hair_id-1);
-    //const { nodes, materials } = useGLTF('/static/mint_hair/glb/'+new_hair_list[deca_store.hair_id-1]+'.glb');
-    const { nodes, materials } = useGLTF(
+    const url = props.url !== null ? props.url : 
         '/static/mint_hair/glb/'+ 
         new_hair_list[props.hair_id-1]+'/'+
         new_hair_list[props.hair_id-1]+'_textured_'+
         hair_color_list[props.color_id]+'.glb'
-    );
+    const { nodes, materials } = useGLTF(url);
     const value = nodes[new_hair_list[props.hair_id-1]];
     console.log(value.position);
     console.log(materials);
@@ -188,6 +185,7 @@ function DECA(props) {
             <MintHairGLB 
                 hair_id={deca_store.hair_id} 
                 color_id={deca_store.hair_color_id}
+                url={deca_store.hair_url}
             />
         )
     }

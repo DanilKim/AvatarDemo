@@ -111,7 +111,7 @@ const AudioUploader = (props) => {
   // Post request for uploading audio in cloudinary
   const handleSubmit = async (e) => {
     e.preventDefault();
-    deca_store.setLoading(true);
+    deca_store.setLoading('애니메이션 제작중...');
 
     //deca_store.setAudioURL(URL.createObjectURL(audioUpload))
     if (deca_store.audio.url === '') return;
@@ -146,11 +146,11 @@ const AudioUploader = (props) => {
       const model = new Blob([res.data]);
       data = null;
       deca_store.setAnimUrl(URL.createObjectURL(model));
-      deca_store.setLoading(false);
+      deca_store.setLoading('');
     } catch (error) {
       console.log(error);
       data = null;
-      deca_store.setLoading(false);
+      deca_store.setLoading('');
     }
 
   };

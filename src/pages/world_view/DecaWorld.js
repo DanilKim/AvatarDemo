@@ -116,7 +116,7 @@ function DecaWorld({ ...props }) {
           {deca_store.selected && <Transformable/>}
         </Suspense>
       </Canvas>
-      {deca_store.loading && <Loading />}
+      {deca_store.loading !== '' && <Loading text={deca_store.loading}/>}
     </>
   );
 }

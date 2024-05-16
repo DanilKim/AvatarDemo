@@ -44,9 +44,10 @@ const deca_store = observable({
   hair_color_id: 0,
   sw: 40,
   model_url: null,
+  hair_url: null,
   audio: {file: null, url: '', name: ''},
   anim: {action: null, url: ''},
-  loading: false,
+  loading: '',
 
   selected: false,
   selected_item: null,
@@ -80,6 +81,10 @@ const deca_store = observable({
 
   setModelURL(url) {
     this.model_url = url;
+  },
+
+  setHairURL(url) {
+    this.hair_url = url;
   },
 
   setAudio(audio) {

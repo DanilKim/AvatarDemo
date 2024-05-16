@@ -82,7 +82,7 @@ export default observer((props) => {
     return (<>
         <Card variant='elevation' sx={{ width: '100%', height: '99%', m: '0%', mt: 1, bgcolor: '#e4ddfa' }}>
             <CardHeader
-                title="Animation"
+                title="애니메이션 제작"
                 avatar={<Avatar src="../../icons/building_icon.png" />}
                 sx={{ color: '#5f5f5f', m: '3%', mb: -3 }}
             />

@@ -244,11 +244,13 @@ const LibraryDialog = observer((props) => {
               if (common_store.hairIdx !== -1) {
                 props.onClose();
                 deca_store.setHairId(common_store.hairIdx);
+                deca_store.setHairURL(null);
                 common_store.setHairIdx(-1);
               }
               if (common_store.hairColorIdx !== -1) {
                 props.onClose();
                 deca_store.setHairColorId(common_store.hairColorIdx);
+                deca_store.setHairURL(null);
                 common_store.setHairColorIdx(-1);
               }
             }}
