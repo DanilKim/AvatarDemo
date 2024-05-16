@@ -114,7 +114,7 @@ export default observer(function GenerativeFaceView({ ...props }) {
         sx={{
           width: 1,
           height: 40,
-          mt: 3,
+          mt: 2,
           bgcolor: "#939393",
           borderRadius: 4,
           display: "flex",

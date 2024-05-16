@@ -21,7 +21,7 @@ const LibraryList = observer((props) => {
       >
         {Array.from(data_store.style_images).map((object, index) => (
           <Box
-            key={props.type + "_" + index}
+            key={props.type[0] + "_" + index}
             sx={{
               display: "flex",
               alignItems: "center",
@@ -30,6 +30,7 @@ const LibraryList = observer((props) => {
           >
             <IconButton
               onClick={() => {
+                common_store.setStyle(props.type[0]);
                 common_store.setLibraryIdx(index);
               }}
               sx={{

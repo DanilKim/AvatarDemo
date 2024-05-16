@@ -39,7 +39,7 @@ function SWSliderCard({ ...props }) {
         align="center"
         gutterBottom
         variant="h6"
-        sx={{ color: "#ffffb0", mt: 5 }}
+        sx={{ color: "#ffffb0", mt: 2.5 }}
       >
         Structure Weight
       </Typography>
@@ -47,7 +47,7 @@ function SWSliderCard({ ...props }) {
         container
         spacing={2}
         alignItems="center"
-        sx={{ width: "90%", ml: 1, mt: 0.5 }}
+        sx={{ width: "90%", ml: 1, mt: -1 }}
       >
         <Grid item xs>
           <Slider
