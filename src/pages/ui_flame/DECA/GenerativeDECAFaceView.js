@@ -88,7 +88,7 @@ export default observer(function GenerativeFaceView({ ...props }) {
     try {
       const res = await axios({
         method: "post",
-        url: "http://222.122.67.140:11885/hair_align",
+        url: "http://222.122.67.140:11872/head_hair_align",
         data: data,
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",

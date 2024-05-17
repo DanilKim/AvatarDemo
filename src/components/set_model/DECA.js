@@ -122,9 +122,11 @@ function MintHairGLB(props) {
         new_hair_list[props.hair_id-1]+'_textured_'+
         hair_color_list[props.color_id]+'.glb'
     const { nodes, materials } = useGLTF(url);
-    const value = nodes[new_hair_list[props.hair_id-1]];
-    console.log(value.position);
-    console.log(materials);
+    console.log(nodes);
+    console.log(nodes['geometry_0']);
+    const value = props.url !== null ? nodes['geometry_0'] :
+        nodes[new_hair_list[props.hair_id-1]];
+    console.log(url);
   
     return <mesh>
       <primitive 
