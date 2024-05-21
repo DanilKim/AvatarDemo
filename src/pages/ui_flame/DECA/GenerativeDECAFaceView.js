@@ -1,5 +1,4 @@
 import * as React from "react";
-import { useState } from "react";
 import axios from "axios";
 import {
   Box,
@@ -9,7 +8,6 @@ import {
   CardHeader,
   CardContent,
 } from "@mui/material";
-
 import DecaWorld from "../../world_view/DecaWorld";
 import UploadFaceImageCard from "./UploadFaceImageCard";
 import SelectStyleCard from "./SelectStyleCard";
@@ -17,16 +15,16 @@ import SelectHairCard from "./Hair/SelectHairCard";
 import SWSliderCard from "./SWSliderCard";
 import Sidebar from "./Sidebar";
 
-import { observer } from "mobx-react";
+import { observer } from "mobx-react-lite";
 import useStore from "../../../store/UseStore";
 
-export default observer(function GenerativeFaceView({ ...props }) {
+const GenerativeDECAFaceView = observer(() => {
   //변수 설정
   const { deca_store, data_store } = useStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    deca_store.setLoading('3D 얼굴 생성중...');
+    deca_store.setLoading("3D 얼굴 생성중...");
 
     const formData = new FormData();
     formData.append("image", deca_store.inputImage);
@@ -52,37 +50,40 @@ export default observer(function GenerativeFaceView({ ...props }) {
       console.log(model);
       deca_store.setModelURL(URL.createObjectURL(model));
       deca_store.flushAnim();
-      deca_store.setLoading('');
+      deca_store.setLoading("");
     } catch (error) {
       console.log(error);
-      deca_store.setLoading('');
+      deca_store.setLoading("");
     }
   };
 
   const handleHairSubmit = async (e) => {
     e.preventDefault();
-    deca_store.setLoading('맞춤 헤어 적용중...');
-    
+    deca_store.setLoading("맞춤 헤어 적용중...");
+
     var data = new FormData();
-    data.append("hair", 
-      data_store.mint_hair_list[deca_store.hair_id] + '_textured_' +
-      data_store.hair_color_list[deca_store.hair_color_id] + '.glb'
+    data.append(
+      "hair",
+      data_store.mint_hair_list[deca_store.hair_id] +
+        "_textured_" +
+        data_store.hair_color_list[deca_store.hair_color_id] +
+        ".glb"
     );
 
     var model = await fetch(deca_store.model_url);
     var model_blob = await model.blob();
     console.log(model_blob);
-    var model_name = "my_deca" //item.name;
-    var model_file = new File([model_blob], model_name + '.glb' );
+    var model_name = "my_deca"; //item.name;
+    var model_file = new File([model_blob], model_name + ".glb");
     data.append("face", model_file);
- 
+
     for (var value of data.values()) {
       console.log(value);
     }
 
     model = null;
     model_blob = null;
-    model_name = '';
+    model_name = "";
     model_file = null;
 
     try {
@@ -93,21 +94,24 @@ export default observer(function GenerativeFaceView({ ...props }) {
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",
       });
-      
+
       const model = new Blob([res.data]);
       data = null;
       deca_store.setHairURL(URL.createObjectURL(model));
-      deca_store.setLoading('');
+      deca_store.setLoading("");
     } catch (error) {
       console.log(error);
       data = null;
-      deca_store.setLoading('');
+      deca_store.setLoading("");
     }
-
   };
 
   const hair_fitting = [];
-  if (deca_store.model_url && !deca_store.hair_url && deca_store.hair_id !==0) {
+  if (
+    deca_store.model_url &&
+    !deca_store.hair_url &&
+    deca_store.hair_id !== 0
+  ) {
     hair_fitting.push(
       <Button
         color="inherit"
@@ -130,58 +134,75 @@ export default observer(function GenerativeFaceView({ ...props }) {
   }
 
   return (
-    <Box sx={{ height: "94vh", display: "flex" }}>
-      <Card
-        variant="elevation"
-        sx={{
-          width: "16%",
-          height: "97.5%",
-          m: "1.25%",
-          bgcolor: "#5f5f5f",
-          borderRadius: 5,
-          alignItems: "center",
-        }}
-      >
-        <CardHeader
-          title="3D 얼굴 캐릭터"
-          sx={{ color: "white", textAlign: "center", mb: -2 }}
-        />
-        <CardContent sx={{ alignItems: "center" }}>
-          <UploadFaceImageCard />
-          <SelectStyleCard />
-          <SelectHairCard />
-          <SWSliderCard />
-          <Button
-            color="inherit"
-            sx={{
-              width: 1,
-              height: 40,
-              mt: 3,
-              bgcolor: "#939393",
-              borderRadius: 4,
-              display: "flex",
-              flexDirection: "column",
-            }}
-            onClick={handleSubmit}
-          >
-            <Typography variant="h6" sx={{ color: "white" }}>
-              3D 캐릭터 생성
-            </Typography>
-          </Button>
-          {hair_fitting}
-        </CardContent>
-      </Card>
-      <Box sx={{ height: "100%", width: "63.5%" }}>
-        <DecaWorld />
-      </Box>
+    <>
+      <Box sx={{ height: "100%", display: "flex" }}>
+        <Card
+          variant="elevation"
+          sx={{
+            width: "16%",
+            minWidth: "240px",
+            height: "90vh",
+            ml: "1.5%",
+            pt: "10px",
+            bgcolor: "#5f5f5f",
+            borderRadius: 5,
+            alignItems: "center",
+            flexShrink: 0,
+          }}
+        >
+          <CardHeader
+            title="3D 얼굴 캐릭터"
+            sx={{ color: "white", textAlign: "center", mb: -2 }}
+          />
+          <CardContent sx={{ alignItems: "center" }}>
+            <UploadFaceImageCard />
+            <SelectStyleCard />
+            <SelectHairCard />
+            <SWSliderCard />
+            <Button
+              color="inherit"
+              sx={{
+                width: 1,
+                height: 40,
+                mt: 3,
+                bgcolor: "#939393",
+                borderRadius: 4,
+                display: "flex",
+                flexDirection: "column",
+              }}
+              onClick={handleSubmit}
+            >
+              <Typography variant="h6" sx={{ color: "white" }}>
+                3D 캐릭터 생성
+              </Typography>
+            </Button>
+            {hair_fitting}
+          </CardContent>
+        </Card>
+        <Box sx={{ height: "100%", width: "100%" }}>
+          <DecaWorld />
+        </Box>
 
-      <Box
-        direction="row"
-        justifySelf="flex-end"
-        sx={{ width: "18vw", bgcolor: "#fafafa", p: 3 }}
-      >
-        <Sidebar/>
+        <Box
+          direction="row"
+          sx={{
+            width: "18%",
+            minWidth: "270px",
+            height: "90vh",
+            display: "flex",
+            flexDirection: "row",
+            right: "0%",
+            position: "absolute",
+            alignItems: "flex-start",
+            bgcolor: "#fafafa",
+            p: 3,
+            mr: "1.5%",
+          }}
+        >
+          <Sidebar />
+        </Box>
       </Box>
-    </Box>
+    </>
   );
 });
+export default GenerativeDECAFaceView;

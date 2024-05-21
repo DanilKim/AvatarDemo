@@ -1,16 +1,15 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import AnimationWorld from "../../world_view/EmoteWorld";
-// import AnimationWorld from "../../world_view/EX_animationworld";
+import { observer } from "mobx-react-lite";
 import { Card, Button, Typography } from "@mui/material";
 import { useState } from "react";
 import useStore from "../../../store/UseStore";
-import { emote_store } from "../../../store/EMOTEStore";
-// import { common_store } from "../../../store/Common_Store";
 import axios from "axios";
 
-export default function GenerativeAnimationView({ ...props }) {
+const GenerativeEMOTEFaceView = observer(() => {
   //변수 설정
+  const { emote_store } = useStore();
   const [animationAction, setAnimationAction] = useState(null);
   const [audioSrc, setAudioSrc] = useState(null);
   const [textSrc, setTextSrc] = useState(null);
@@ -90,33 +89,38 @@ export default function GenerativeAnimationView({ ...props }) {
   };
 
   return (
-    <Box sx={{ height: "94vh", display: "flex" }}>
-      <Card
-        variant="elevation"
-        sx={{
-          width: "20%",
-          height: "97.5%",
-          m: "1.25%",
-          bgcolor: "#5f5f5f",
-          borderRadius: 5,
-        }}
-      >
-        <Button
-          color="inherit"
+    <>
+      <Box sx={{ height: "94vh", display: "flex" }}>
+        <Card
+          variant="elevation"
           sx={{
-            width: 1,
-            height: 1 / 8,
-            mt: 3,
-            bgcolor: "#22aa22",
+            width: "16%",
+            minWidth: "240px",
+            height: "90vh",
+            ml: "1.5%",
+            pt: "10px",
+            bgcolor: "#5f5f5f",
             borderRadius: 5,
-            display: "flex",
-            flexDirection: "column",
+            alignItems: "center",
+            flexShrink: 0,
           }}
+        >
+          <Button
+            color="inherit"
+            sx={{
+              width: 1,
+              height: 1 / 8,
+              mt: 3,
+              bgcolor: "#22aa22",
+              borderRadius: 5,
+              display: "flex",
+              flexDirection: "column",
+            }}
           >
-          <input
-            type="file"
-            accept="audio/wav"
-            onChange={(e) => {
+            <input
+              type="file"
+              accept="audio/wav"
+              onChange={(e) => {
                 if (e.target.files[0]) {
                   const file = e.target.files[0];
 
@@ -130,28 +134,28 @@ export default function GenerativeAnimationView({ ...props }) {
                   form.append("audiofile", file, "audio.wav");
                 }
               }}
-          />
-          <Typography variant="body1" sx={{ color: "black" }}>
-            오디오 첨부
-          </Typography>
-        </Button>
-        <Button
-          color="inherit"
-          sx={{
-            width: 1,
-            height: 1 / 8,
-            mt: 3,
-            bgcolor: "#22aa22",
-            borderRadius: 5,
-            display: "flex",
-            flexDirection: "column",
-          }}
+            />
+            <Typography variant="body1" sx={{ color: "black" }}>
+              오디오 첨부
+            </Typography>
+          </Button>
+          <Button
+            color="inherit"
+            sx={{
+              width: 1,
+              height: 1 / 8,
+              mt: 3,
+              bgcolor: "#22aa22",
+              borderRadius: 5,
+              display: "flex",
+              flexDirection: "column",
+            }}
           >
-          <input
-            placeholder="원하는 문장을 입력하세요."
-            type="text"
-            value={textSrc}
-            onChange={(e) => {
+            <input
+              placeholder="원하는 문장을 입력하세요."
+              type="text"
+              value={textSrc}
+              onChange={(e) => {
                 if (e) {
                   const text_value = e.target.value;
                   emote_store.setInputText(text_value);
@@ -164,89 +168,102 @@ export default function GenerativeAnimationView({ ...props }) {
                   form.append("textfile", text_value, "text.txt");
                 }
               }}
-          />
-          <Typography variant="body1" sx={{ color: "black" }}>
-            텍스트 첨부
-          </Typography>
-        </Button>
-        <Button
-          color="inherit"
-          sx={{
-            width: 1,
-            height: 40,
-            mt: 3,
-            bgcolor: "#939393",
-            borderRadius: 4,
-            display: "flex",
-            flexDirection: "column",
-          }}
-          onClick={handleAudioSubmit}
-        >
-          <Typography variant="h6" sx={{ color: "white" }}>
-            Audio Generate
-          </Typography>
-        </Button>
-        <Button
-          color="inherit"
-          sx={{
-            width: 1,
-            height: 40,
-            mt: 3,
-            bgcolor: "#939393",
-            borderRadius: 4,
-            display: "flex",
-            flexDirection: "column",
-          }}
-          onClick={handleSubmit}
-        >
-          <Typography variant="h6" sx={{ color: "white" }}>
-            Generate
-          </Typography>
-        </Button>
-        <Button
-          color="inherit"
-          sx={{
-            width: 1,
-            height: 1 / 8,
-            mt: 3,
-            bgcolor: "#22aa22",
-            borderRadius: 5,
-            display: "flex",
-            flexDirection: "column",
-          }}
-          onClick={playAnimation}
-        >
-          <Typography variant="body1" sx={{ color: "black" }}>
-            애니메이션 재생
-          </Typography>
-        </Button>
-        <Button
-          color="inherit"
-          sx={{
-            width: 1,
-            height: 1 / 8,
-            mt: 3,
-            bgcolor: "#aaaa22",
-            borderRadius: 5,
-            display: "flex",
-            flexDirection: "column",
-          }}
-          onClick={stopAnimation}
-        >
-          <Typography variant="body1" sx={{ color: "black" }}>
-            애니메이션 멈춤
-          </Typography>
-        </Button>
-      </Card>
-      <Box sx={{ height: "100%", width: "60%" }}>
-        <AnimationWorld setAnimationAction={setAnimationAction} />
-      </Box>
+            />
+            <Typography variant="body1" sx={{ color: "black" }}>
+              텍스트 첨부
+            </Typography>
+          </Button>
+          <Button
+            color="inherit"
+            sx={{
+              width: 1,
+              height: 40,
+              mt: 3,
+              bgcolor: "#939393",
+              borderRadius: 4,
+              display: "flex",
+              flexDirection: "column",
+            }}
+            onClick={handleAudioSubmit}
+          >
+            <Typography variant="h6" sx={{ color: "white" }}>
+              Audio Generate
+            </Typography>
+          </Button>
+          <Button
+            color="inherit"
+            sx={{
+              width: 1,
+              height: 40,
+              mt: 3,
+              bgcolor: "#939393",
+              borderRadius: 4,
+              display: "flex",
+              flexDirection: "column",
+            }}
+            onClick={handleSubmit}
+          >
+            <Typography variant="h6" sx={{ color: "white" }}>
+              Generate
+            </Typography>
+          </Button>
+          <Button
+            color="inherit"
+            sx={{
+              width: 1,
+              height: 1 / 8,
+              mt: 3,
+              bgcolor: "#22aa22",
+              borderRadius: 5,
+              display: "flex",
+              flexDirection: "column",
+            }}
+            onClick={playAnimation}
+          >
+            <Typography variant="body1" sx={{ color: "black" }}>
+              애니메이션 재생
+            </Typography>
+          </Button>
+          <Button
+            color="inherit"
+            sx={{
+              width: 1,
+              height: 1 / 8,
+              mt: 3,
+              bgcolor: "#aaaa22",
+              borderRadius: 5,
+              display: "flex",
+              flexDirection: "column",
+            }}
+            onClick={stopAnimation}
+          >
+            <Typography variant="body1" sx={{ color: "black" }}>
+              애니메이션 멈춤
+            </Typography>
+          </Button>
+        </Card>
+        <Box sx={{ height: "100%", width: "100%" }}>
+          <AnimationWorld setAnimationAction={setAnimationAction} />
+        </Box>
 
-      <Box
-        direction="row"
-        justifySelf="flex-end"
-        sx={{ width: "15vw", bgcolor: "#fafafa", p: 3 }}
-      ></Box>
-    </Box>
+        <Box
+          direction="row"
+          sx={{
+            width: "18%",
+            minWidth: "270px",
+            height: "90vh",
+            display: "flex",
+            flexDirection: "row",
+            right: "0%",
+            position: "absolute",
+            alignItems: "flex-start",
+            bgcolor: "#fafafa",
+            p: 3,
+            mr: "1.5%",
+          }}
+        ></Box>
+      </Box>
+    </>
   );
-}
+});
+export default GenerativeEMOTEFaceView;
