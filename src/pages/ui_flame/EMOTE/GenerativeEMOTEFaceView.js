@@ -91,9 +91,9 @@ const GenerativeEMOTEFaceView = observer(() => {
   return (
     <>
       <Box sx={{ height: "94vh", display: "flex" }}>
-        <Card
-          variant="elevation"
+        <Box
           sx={{
+            zIndex: 2,
             width: "16%",
             minWidth: "240px",
             height: "90vh",
@@ -102,7 +102,10 @@ const GenerativeEMOTEFaceView = observer(() => {
             bgcolor: "#5f5f5f",
             borderRadius: 5,
             alignItems: "center",
-            flexShrink: 0,
+            display: "flex",
+            flexDirection: "column",
+            left: "0%",
+            position: "absolute",
           }}
         >
           <Button
@@ -241,14 +244,15 @@ const GenerativeEMOTEFaceView = observer(() => {
               애니메이션 멈춤
             </Typography>
           </Button>
-        </Card>
-        <Box sx={{ height: "100%", width: "100%" }}>
+        </Box>
+        <Box sx={{ height: "100%", width: "100vw", zIndex: 1 }}>
           <AnimationWorld setAnimationAction={setAnimationAction} />
         </Box>
 
         <Box
           direction="row"
           sx={{
+            zIndex: 2,
             width: "18%",
             minWidth: "270px",
             height: "90vh",

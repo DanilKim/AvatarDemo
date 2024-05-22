@@ -13,10 +13,11 @@ export default function SmplifyCreate({ ...props }) {
     setValue(newValue);
   };
   return (
-    <Box sx={{ height: "100%", display: "flex" }}>
-      <Card
+    <Box sx={{ height: "94vh", display: "flex" }}>
+      <Box
         variant="elevation"
         sx={{
+          zIndex: 2,
           width: "16%",
           minWidth: "240px",
           height: "90vh",
@@ -24,18 +25,22 @@ export default function SmplifyCreate({ ...props }) {
           bgcolor: "#5f5f5f",
           borderRadius: 5,
           alignItems: "center",
-          flexShrink: 0,
+          display: "flex",
+          flexDirection: "column",
+          left: "0%",
+          position: "absolute",
         }}
       >
         <CreateAvatarBtn />
-      </Card>
-      <Box sx={{ height: "100%", width: "100%" }}>
+      </Box>
+      <Box sx={{ height: "100%", width: "100vw", zIndex: 1 }}>
         <SmplifyWorld />
       </Box>
 
       <Box
         direction="row"
         sx={{
+          zIndex: 2,
           width: "18%",
           minWidth: "270px",
           height: "90vh",
