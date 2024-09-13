@@ -49,7 +49,7 @@ const App = observer(() => {
                 variant="h5"
                 sx={{ color: "#7c7c7c", whiteSpace: "nowrap" }}
               >
-                AI 2-2
+                TmaxAI
               </Typography>
             </Box>
             <Tabs
@@ -59,10 +59,10 @@ const App = observer(() => {
               scrollButtons="auto"
               sx={{ flexGrow: 1 }}
             >
-              <Tab label="Stylized Image" index="0" />
-              <Tab label="Animated Face" index="1" />
-              <Tab label="Smplify" index="2" />
-              <Tab label="Animation" index="3" />
+              
+              <Tab label="얼굴" index="0" />
+              <Tab label="바디" index="1" />
+              <Tab label="애니메이션" index="2" />
             </Tabs>
           </Toolbar>
         </AppBar>
@@ -75,16 +75,14 @@ const App = observer(() => {
             mt: "50px",
           }}
         >
+          
           <TabPanel value={value} index={0}>
-            <StylizedFaceView />
-          </TabPanel>
-          <TabPanel value={value} index={1}>
             <GenerativeDECAFaceView />
           </TabPanel>
-          <TabPanel value={value} index={2}>
+          <TabPanel value={value} index={1}>
             <SmplifyCreate />
           </TabPanel>
-          <TabPanel value={value} index={3}>
+          <TabPanel value={value} index={2}>
             <GenerativeEMOTEFaceView />
           </TabPanel>
         </Box>
@@ -93,3 +91,9 @@ const App = observer(() => {
   );
 });
 export default App;
+
+
+// <Tab label="Stylized Image" index="0" />
+// <TabPanel value={value} index={0}>
+//   <StylizedFaceView />
+// </TabPanel>

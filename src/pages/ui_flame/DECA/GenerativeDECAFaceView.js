@@ -40,7 +40,8 @@ const GenerativeDECAFaceView = observer(() => {
     try {
       const res = await axios({
         method: "post",
-        url: "http://222.122.67.140:11872/style_deca",
+        //url: "http://222.122.67.140:11872/style_deca",
+        url: "http://192.168.159.13:12781/style_deca",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",
@@ -89,7 +90,8 @@ const GenerativeDECAFaceView = observer(() => {
     try {
       const res = await axios({
         method: "post",
-        url: "http://222.122.67.140:11872/head_hair_align",
+        //url: "http://222.122.67.140:11872/head_hair_align",
+        url: "http://192.168.159.13:12781/head_hair_align",
         data: data,
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",
@@ -155,7 +157,7 @@ const GenerativeDECAFaceView = observer(() => {
           }}
         >
           <CardHeader
-            title="3D 얼굴 캐릭터"
+            title="3D 캐릭터 변환"
             sx={{ color: "white", textAlign: "center", mb: -2 }}
           />
           <CardContent sx={{ alignItems: "center" }}>

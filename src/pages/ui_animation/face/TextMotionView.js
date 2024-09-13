@@ -40,7 +40,8 @@ export default function TextMotionView({ ...props }) {
     try {
       const res = await axios({
         method: "post",
-        url: "http://222.122.67.140:11885/text2wav",
+        //url: "http://222.122.67.140:11885/text2wav",
+        url: "http://192.168.153.123:11885/text2wav",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",
@@ -71,7 +72,8 @@ export default function TextMotionView({ ...props }) {
     try {
       const res = await axios({
         method: "post",
-        url: "http://222.122.67.140:11885/emote",
+        //url: "http://222.122.67.140:11885/emote",
+        url: "http://192.168.153.123:11885/emote",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
         responseType: "blob",

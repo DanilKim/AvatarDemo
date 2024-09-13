@@ -37,7 +37,7 @@ const Transformable = () => {
   })
 
   return (
-      <TransformControls mode={mode} object={deca_store.selected && scene.getObjectByName("my_deca", true)} />
+      <TransformControls mode={mode} object={deca_store.selected && scene.getObjectByName("my_face", true)} />
   )
 }
 
@@ -106,7 +106,7 @@ function DecaWorld({ ...props }) {
           {deca_store.model_url != null && (<>
             <DECA 
               id={0}
-              name={"my_deca"}
+              name={"my_face"}
               url={deca_store.model_url} 
               scale={[10.0, 10.0, 10.0]} 
             />

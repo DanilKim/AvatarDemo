@@ -30,7 +30,7 @@ export default observer((props) => {
     let item;
     if (deca_store.selected) {
         //item = deca_store.scene.getObjectByName(deca_store.selected_item.name, true);
-        item = deca_store.scene.getObjectByName("my_deca", true);
+        item = deca_store.scene.getObjectByName("my_face", true);
     }
 
 
@@ -98,7 +98,7 @@ export default observer((props) => {
                                     </TableRow>
                                     <TableRow>
                                         <TableCell align="center">name</TableCell>
-                                        <TableCell align="right" >{"my_deca"}</TableCell>
+                                        <TableCell align="right" >{"my face"}</TableCell>
                                     </TableRow>
                                 </TableBody>
                             </Table>
